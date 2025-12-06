@@ -6,10 +6,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const navItemsWithSubnav = document.querySelectorAll('.header__nav-has-subnav');
 
     // Helper: close menu and reset subnavs
-    function closeMobileMenu() {
-        headerNav.classList.remove('active');
-        headerToggle.classList.remove('active');
-        navItemsWithSubnav.forEach(item => item.classList.remove('active'));
+    function closeMobileMenu(delay = 0) {
+        if (delay > 0) {
+            setTimeout(() => {
+                headerNav.classList.remove('active');
+                headerToggle.classList.remove('active');
+                navItemsWithSubnav.forEach(item => item.classList.remove('active'));
+            }, delay);
+        } else {
+            headerNav.classList.remove('active');
+            headerToggle.classList.remove('active');
+            navItemsWithSubnav.forEach(item => item.classList.remove('active'));
+        }
     }
 
     // Toggle nav on mobile
@@ -46,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Si el click es en el arrow, no cerrar
         if (e.target.closest('.header__subnav-arrow')) return;
         if (window.innerWidth <= 1100) {
-            closeMobileMenu();
+            closeMobileMenu(150);
         }
     });
 
