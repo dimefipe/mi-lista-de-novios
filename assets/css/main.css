@@ -3208,7 +3208,6 @@ Estilos específicos de la sección Contacto
         div span {
             display: inline;
             width: unset;
-            background-color: red;
             word-break: break-word;
             overflow-wrap: break-word;
         }
