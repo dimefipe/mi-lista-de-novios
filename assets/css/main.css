@@ -1848,6 +1848,7 @@ h2::after {
 
 .nosotros {
     background: #fff;
+    padding-top: 80px;
 }
 .nosotros .container {
     display: grid;
@@ -1921,6 +1922,9 @@ h2::after {
 }
 
 @media (max-width: 767px) {
+    .nosotros {
+        padding-top: 24px;
+    }
     .video-play-btn {
         width: 60px;
         height: 60px;
@@ -3002,6 +3006,226 @@ h2::after {
 .marcas__logo img {
     max-height: 45px;
 }
+
+/*
+Section: Contacto
+Estilos específicos de la sección Contacto
+*/
+
+.contacto {
+    background: linear-gradient(45deg, hsla(339, 72%, 65%, 0.20) 50%, hsla(0, 0%, 100%, 0.9) 100%), url('../img/fondo-contacto.webp');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    padding-block: 48px;
+    padding-top: 72px;
+}
+
+.contacto .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.contacto__redes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: hsla(184, 18%, 48%, 0.3);
+    border: 1px solid hsla(0, 0%, 100%, .25);
+    box-shadow: 0px 10px 20px hsla(185, 46%, 43%, 0.2);
+    backdrop-filter: blur(15px);
+    padding: 24px;
+    width: 100%;;
+}   
+
+.contacto__redes h2 {
+    color: white;
+    font-size: 48px;
+}
+
+.contacto__redes p {
+    color: white;
+    font-size: 24px;
+}
+.contacto__redes ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.contacto__redes ul li {
+    width: 100%;
+}
+
+.contacto__redes ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #fff;
+    font-size: 18px;
+    transition: all .3s ease-in-out;
+    position: relative;
+    width: max-content;
+    padding: 16px;
+    border: 1px solid hsla(0, 0%, 100%, 0.7);
+    width: 100%;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+    svg {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        fill: #fff;
+        transition: all .3s ease-in-out;
+    }
+}
+
+.contacto__redes ul li a:hover {
+    background: #fff;
+    color: #005359;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    svg {
+        fill: #005359;
+    }
+}
+
+.contacto__formulario {
+    background: hsla(184, 18%, 48%, 0.3);
+    border: 1px solid hsla(0, 0%, 100%, .25);
+    box-shadow: 0px 10px 20px hsla(185, 46%, 43%, 0.2);
+    backdrop-filter: blur(15px);
+    margin-bottom: 35px;
+}
+
+.contacto__formulario--titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(90deg, #56B3C2 0%, #7EDCA7 100%);   
+    padding: 1rem;
+}
+
+.contacto__formulario--titulo svg {
+    width: 32px;
+    fill: #fff;
+}
+
+.contacto__formulario--titulo h2:before, 
+.contacto__formulario--titulo h2:after {
+    display: none;
+}
+
+.contacto__formulario--titulo h2 {
+    padding: 0px;
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+}
+
+.contacto__formulario--form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    position: relative;
+    width: 460px;
+    padding-bottom: 64px;
+}
+
+.contacto__formulario--form input,
+.contacto__formulario--form textarea {
+    padding: 12px 24px;
+    color: #ffffff;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.7);
+    border-right: 1px solid hsla(0, 0%, 100%, 0.7);
+}
+
+.contacto__formulario--form textarea {
+    min-height: 170px;
+}
+
+.contacto__formulario--form input::placeholder,
+.contacto__formulario--form textarea::placeholder {
+    color: hsla(0, 0%, 100%, 0.50);
+}
+
+.contacto__formulario--form input:focus,
+.contacto__formulario--form textarea:focus {
+    background: hsla(0, 0%, 100%, 0.15);
+    background: hsla(184, 18%, 48%, 0.4);
+    outline-offset: 0px;
+    border-bottom: 1px solid transparent;
+    border-right: 1px solid transparent;
+    outline: 1px solid #7CDAA9;
+    box-shadow: 0px 0px 10px #7CDAA9;
+}
+
+.contacto__formulario--form button {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    min-width: max-content;
+    transform: translateX(-50%) translateY(calc(50% + 6px));
+}
+
+.contacto__formulario--form button:hover {
+    transform: translateX(-50%) translateY(calc(50% + 0px));
+}
+
+@media (max-width: 1024px){
+    .contacto .container {
+        flex-direction: column;
+    }
+
+    .contacto__redes h2 {
+        color: white;
+        font-size: 32px;
+    }
+
+    .contacto__redes p {
+        color: white;
+        font-size: 16px;
+    }
+
+    .contacto__redes ul li a {
+        font-size: 16px;
+        padding: 12px;
+
+        div span {
+            display: inline;
+            width: unset;
+            background-color: red;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+    }
+
+    .contacto__formulario {
+        min-width: 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .contacto__formulario--form {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 /* 
    Section: Banner Cierre
    Estilos específicos de la sección Banner de Cierre
@@ -3142,6 +3366,8 @@ h2::after {
     }
 
 }
+
+
 
 #float-btn {
     position: fixed;
