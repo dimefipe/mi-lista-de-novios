@@ -3905,6 +3905,7 @@ label {
             flex-direction: column;
             align-items: center;
             opacity: 1;
+            transform: translateY(0);
             
             img {
                 width: 50px;
@@ -3924,15 +3925,29 @@ label {
             text-wrap: balance;
             text-align: center;
             opacity: 1;
+            transform: translateY(0);
         }
     }
 
-    @keyframes fadeInTestimonio {
+    @keyframes slideUpFadeIn {
         from {
             opacity: 0;
+            transform: translateY(20px);
         }
         to {
             opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideDownFadeOut {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-20px);
         }
     }
 

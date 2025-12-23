@@ -571,7 +571,8 @@ class TestimoniosCarousel {
         
         this.currentPage = 1;
         this.autoPlayInterval = null;
-        this.autoPlayDelay = 6000; // 6 segundos
+        this.autoPlayDelay = 3000; // 3 segundos
+        this.isTransitioning = false;
         
         this.init();
     }
@@ -613,11 +614,13 @@ class TestimoniosCarousel {
     }
     
     updateTestimonioContent(data) {
-        // Fade OUT del contenido actual (500ms)
-        this.profileElement.style.opacity = '0';
-        this.textElement.style.opacity = '0';
-        this.profileElement.style.transition = 'opacity 0.5s ease-in-out';
-        this.textElement.style.transition = 'opacity 0.5s ease-in-out';
+        // Prevenir múltiples transiciones simultáneas
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+        
+        // Slide DOWN Fade OUT del contenido actual (500ms)
+        this.profileElement.style.animation = 'slideDownFadeOut 0.5s ease-in-out forwards';
+        this.textElement.style.animation = 'slideDownFadeOut 0.5s ease-in-out forwards';
         
         // Esperar a que termine el fade out
         setTimeout(() => {
@@ -628,18 +631,24 @@ class TestimoniosCarousel {
             if (this.nameElement) this.nameElement.textContent = data.name;
             if (this.textElement) this.textElement.textContent = data.text;
             
-            // Fade IN del nuevo contenido (500ms)
-            this.profileElement.style.opacity = '1';
-            this.textElement.style.opacity = '1';
+            // Slide UP Fade IN del nuevo contenido (500ms)
+            this.profileElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
+            this.textElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
+            
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, 500);
         }, 500);
     }
     
     nextTestimonio() {
+        if (this.isTransitioning) return;
         const nextPage = this.currentPage + 1;
         this.loadTestimonio(nextPage);
     }
     
     previousTestimonio() {
+        if (this.isTransitioning) return;
         const previousPage = this.currentPage > 1 ? this.currentPage - 1 : testimoniosData.length;
         this.loadTestimonio(previousPage);
     }
