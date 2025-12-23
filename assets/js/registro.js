@@ -449,8 +449,29 @@ class RegistroForm {
     updateProgressBar() {
         if (!this.progressBar || !this.progressText) return;
         
-        const percentage = (this.currentStep / this.totalSteps) * 100;
-        this.progressBar.style.setProperty('--value', percentage);
+        const targetPercentage = (this.currentStep / this.totalSteps) * 100;
+        const currentValue = parseFloat(this.progressBar.style.getPropertyValue('--value') || 0);
+        
+        // Animar el valor del --value suavemente durante 1 segundo
+        const duration = 1000; // 1 segundo en milisegundos
+        const startTime = Date.now();
+        
+        const animate = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1); // 0 a 1
+            
+            // Interpolación lineal entre currentValue y targetPercentage
+            const newValue = currentValue + (targetPercentage - currentValue) * progress;
+            this.progressBar.style.setProperty('--value', newValue);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            }
+        };
+        
+        animate();
+        
+        // Actualizar el texto inmediatamente
         this.progressText.innerHTML = `<b>${this.currentStep}</b> de ${this.totalSteps}`;
     }
     
