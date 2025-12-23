@@ -452,8 +452,8 @@ class RegistroForm {
         const targetPercentage = (this.currentStep / this.totalSteps) * 100;
         const currentValue = parseFloat(this.progressBar.style.getPropertyValue('--value') || 0);
         
-        // Animar el valor del --value suavemente durante 1 segundo
-        const duration = 1000; // 1 segundo en milisegundos
+        // Animar el valor del --value suavemente durante 0.5 segundos
+        const duration = 500; // 0.5 segundos en milisegundos
         const startTime = Date.now();
         
         const animate = () => {
