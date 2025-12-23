@@ -3904,6 +3904,8 @@ label {
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeInTestimonio 0.5s ease-in-out;
+            
             img {
                 width: 50px;
                 height: 50px;
@@ -3921,6 +3923,16 @@ label {
             color: hsla(184, 100%, 17%, 0.7);
             text-wrap: balance;
             text-align: center;
+            animation: fadeInTestimonio 0.5s ease-in-out 0.1s backwards;
+        }
+    }
+
+    @keyframes fadeInTestimonio {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
         }
     }
 

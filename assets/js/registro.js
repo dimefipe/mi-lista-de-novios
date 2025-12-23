@@ -495,7 +495,171 @@ class RegistroForm {
     }
 }
 
+/**
+ * TESTIMONIOS CAROUSEL - Sistema automático de carrusel de testimonios
+ * Funcionalidades:
+ * - Rotación automática cada 6 segundos
+ * - Navegación manual con botones
+ * - Simulación de consumo de endpoint
+ * - Animaciones fade in simplificadas
+ */
+
+// Base de datos simulada de testimonios
+const testimoniosData = [
+    {
+        name: 'Camilo Torres',
+        image: 'assets/img/profile-1.webp',
+        text: 'Me ayudó mucho a organizar mejor mi boda, en una semana llené mi lista y logré enviar todas las invitaciones de forma eficiente.'
+    },
+    {
+        name: 'María González',
+        image: 'assets/img/profile-2.webp',
+        text: 'Una plataforma increíble que simplificó todo el proceso. Nuestros invitados quedaron encantados con la facilidad de comprar regalos.'
+    },
+    {
+        name: 'Andrea López',
+        image: 'assets/img/profile-3.webp',
+        text: 'Gracias a la lista de novios logramos tener exactamente lo que queríamos. El sistema es intuitivo y muy seguro.'
+    },
+    {
+        name: 'Paula Fernández',
+        image: 'assets/img/profile-1.webp',
+        text: 'Excelente servicio, muy recomendado. El equipo fue muy atento y resolvió todas nuestras dudas rápidamente.'
+    },
+    {
+        name: 'Daniela Ruiz',
+        image: 'assets/img/profile-2.webp',
+        text: 'La mejor inversión para nuestra boda. Recibimos exactamente lo que necesitábamos gracias a esta plataforma.'
+    }
+];
+
+/**
+ * Simula consumir un endpoint que devuelve testimonios
+ * @param {number} page - Página de testimonios
+ * @returns {Promise} Promesa que resuelve con datos de testimonios
+ */
+function fetchTestimonios(page = 1) {
+    return new Promise((resolve) => {
+        // Simular latencia de red (500-1000ms)
+        const delay = Math.random() * 500 + 500;
+        
+        setTimeout(() => {
+            // Simular rotación de testimonios
+            const startIndex = (page - 1) % testimoniosData.length;
+            const testimonios = testimoniosData[startIndex];
+            
+            resolve({
+                success: true,
+                data: testimonios,
+                page: page,
+                timestamp: new Date().toISOString()
+            });
+        }, delay);
+    });
+}
+
+class TestimoniosCarousel {
+    constructor() {
+        this.carouselElement = document.querySelector('.registro__testimonio');
+        this.cardElement = document.querySelector('.registro__testimonio--card');
+        this.profileElement = document.querySelector('.registro__testimonio--profile');
+        this.textElement = this.cardElement.querySelector('p');
+        this.backButton = document.querySelector('.registro__testimonio--back');
+        this.nextButton = document.querySelector('.registro__testimonio--next');
+        
+        this.currentPage = 1;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 6000; // 6 segundos
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.carouselElement) return;
+        
+        this.setupEventListeners();
+        this.startAutoPlay();
+    }
+    
+    setupEventListeners() {
+        if (this.backButton) {
+            this.backButton.addEventListener('click', () => this.previousTestimonio());
+        }
+        
+        if (this.nextButton) {
+            this.nextButton.addEventListener('click', () => this.nextTestimonio());
+        }
+        
+        // Pausar autoplay cuando el usuario interactúa manualmente
+        if (this.carouselElement) {
+            this.carouselElement.addEventListener('mouseenter', () => this.stopAutoPlay());
+            this.carouselElement.addEventListener('mouseleave', () => this.startAutoPlay());
+        }
+    }
+    
+    async loadTestimonio(page) {
+        try {
+            const response = await fetchTestimonios(page);
+            
+            if (response.success) {
+                this.updateTestimonioContent(response.data);
+                this.currentPage = page;
+            }
+        } catch (error) {
+            console.error('Error cargando testimonio:', error);
+        }
+    }
+    
+    updateTestimonioContent(data) {
+        // Aplicar animación de fade out y fade in
+        this.profileElement.style.animation = 'none';
+        this.textElement.style.animation = 'none';
+        
+        // Forzar reflow para reiniciar la animación
+        void this.profileElement.offsetHeight;
+        void this.textElement.offsetHeight;
+        
+        // Actualizar contenido
+        const imgElement = this.profileElement.querySelector('img');
+        const nameElement = this.profileElement.querySelector('p');
+        
+        if (imgElement) imgElement.src = data.image;
+        if (nameElement) nameElement.textContent = data.name;
+        this.textElement.textContent = data.text;
+        
+        // Reiniciar animación
+        this.profileElement.style.animation = 'fadeInTestimonio 0.5s ease-in-out';
+        this.textElement.style.animation = 'fadeInTestimonio 0.5s ease-in-out 0.1s backwards';
+    }
+    
+    nextTestimonio() {
+        const nextPage = this.currentPage + 1;
+        this.loadTestimonio(nextPage);
+    }
+    
+    previousTestimonio() {
+        const previousPage = this.currentPage > 1 ? this.currentPage - 1 : testimoniosData.length;
+        this.loadTestimonio(previousPage);
+    }
+    
+    startAutoPlay() {
+        if (this.autoPlayInterval) return;
+        
+        this.autoPlayInterval = setInterval(() => {
+            this.nextTestimonio();
+        }, this.autoPlayDelay);
+    }
+    
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
+    }
+}
+
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     new RegistroForm();
+    new TestimoniosCarousel();
 });
