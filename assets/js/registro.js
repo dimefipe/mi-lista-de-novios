@@ -495,13 +495,18 @@ class RegistroForm {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    new RegistroForm();
+});
+
+
 /**
  * TESTIMONIOS CAROUSEL - Sistema automático de carrusel de testimonios
  * Funcionalidades:
- * - Rotación automática cada 6 segundos
- * - Navegación manual con botones
+ * - Rotación automática cada 3 segundos
+ * - Navegación manual con botones (respuesta inmediata)
  * - Simulación de consumo de endpoint
- * - Animaciones fade in simplificadas
+ * - Animaciones slide up/down con fade
  */
 
 // Base de datos simulada de testimonios
@@ -533,43 +538,19 @@ const testimoniosData = [
     }
 ];
 
-/**
- * Simula consumir un endpoint que devuelve testimonios
- * @param {number} page - Página de testimonios
- * @returns {Promise} Promesa que resuelve con datos de testimonios
- */
-function fetchTestimonios(page = 1) {
-    return new Promise((resolve) => {
-        // Simular latencia de red (500-1000ms)
-        const delay = Math.random() * 500 + 500;
-        
-        setTimeout(() => {
-            // Simular rotación de testimonios
-            const startIndex = (page - 1) % testimoniosData.length;
-            const testimonios = testimoniosData[startIndex];
-            
-            resolve({
-                success: true,
-                data: testimonios,
-                page: page,
-                timestamp: new Date().toISOString()
-            });
-        }, delay);
-    });
-}
-
 class TestimoniosCarousel {
     constructor() {
         this.carouselElement = document.querySelector('.registro__testimonio');
+        if (!this.carouselElement) return;
+        
         this.cardElement = document.querySelector('.registro__testimonio--card');
         this.profileElement = document.querySelector('.registro__testimonio--profile');
-        this.nameElement = this.profileElement.querySelector('p');
-        // Selecciona el párrafo que es hermano del profileElement (el texto del testimonio)
-        this.textElement = this.cardElement.querySelectorAll('p')[1];
+        this.nameElement = this.profileElement?.querySelector('p');
+        this.textElement = this.cardElement?.querySelectorAll('p')[1];
         this.backButton = document.querySelector('.registro__testimonio--back');
         this.nextButton = document.querySelector('.registro__testimonio--next');
         
-        this.currentPage = 1;
+        this.currentIndex = 0;
         this.autoPlayInterval = null;
         this.autoPlayDelay = 3000; // 3 segundos
         this.isTransitioning = false;
@@ -578,38 +559,31 @@ class TestimoniosCarousel {
     }
     
     init() {
-        if (!this.carouselElement) return;
-        
         this.setupEventListeners();
         this.startAutoPlay();
     }
     
     setupEventListeners() {
         if (this.backButton) {
-            this.backButton.addEventListener('click', () => this.previousTestimonio());
+            this.backButton.addEventListener('click', () => {
+                this.stopAutoPlay();
+                this.previousTestimonio();
+                this.startAutoPlay();
+            });
         }
         
         if (this.nextButton) {
-            this.nextButton.addEventListener('click', () => this.nextTestimonio());
+            this.nextButton.addEventListener('click', () => {
+                this.stopAutoPlay();
+                this.nextTestimonio();
+                this.startAutoPlay();
+            });
         }
         
-        // Pausar autoplay cuando el usuario interactúa manualmente
+        // Pausar autoplay cuando el usuario hace hover
         if (this.carouselElement) {
             this.carouselElement.addEventListener('mouseenter', () => this.stopAutoPlay());
             this.carouselElement.addEventListener('mouseleave', () => this.startAutoPlay());
-        }
-    }
-    
-    async loadTestimonio(page) {
-        try {
-            const response = await fetchTestimonios(page);
-            
-            if (response.success) {
-                this.updateTestimonioContent(response.data);
-                this.currentPage = page;
-            }
-        } catch (error) {
-            console.error('Error cargando testimonio:', error);
         }
     }
     
@@ -617,14 +591,6 @@ class TestimoniosCarousel {
         // Prevenir múltiples transiciones simultáneas
         if (this.isTransitioning) return;
         this.isTransitioning = true;
-        
-        // Remover animaciones primero
-        this.profileElement.style.animation = 'none';
-        this.textElement.style.animation = 'none';
-        
-        // Forzar reflow para reiniciar animaciones
-        void this.profileElement.offsetHeight;
-        void this.textElement.offsetHeight;
         
         // Slide DOWN Fade OUT del contenido actual (500ms)
         this.profileElement.style.animation = 'slideDownFadeOut 0.5s ease-in-out forwards';
@@ -639,30 +605,35 @@ class TestimoniosCarousel {
             if (this.nameElement) this.nameElement.textContent = data.name;
             if (this.textElement) this.textElement.textContent = data.text;
             
-            // Forzar reflow nuevamente
-            void this.profileElement.offsetHeight;
-            void this.textElement.offsetHeight;
-            
-            // Slide UP Fade IN del nuevo contenido (500ms)
-            this.profileElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
-            this.textElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
-            
-            setTimeout(() => {
-                this.isTransitioning = false;
-            }, 500);
+            // Pequeño delay para asegurar que el contenido se actualizó
+            requestAnimationFrame(() => {
+                // Slide UP Fade IN del nuevo contenido (500ms)
+                this.profileElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
+                this.textElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
+                
+                setTimeout(() => {
+                    this.isTransitioning = false;
+                }, 500);
+            });
         }, 500);
     }
     
     nextTestimonio() {
         if (this.isTransitioning) return;
-        const nextPage = this.currentPage + 1;
-        this.loadTestimonio(nextPage);
+        
+        this.currentIndex = (this.currentIndex + 1) % testimoniosData.length;
+        const nextData = testimoniosData[this.currentIndex];
+        this.updateTestimonioContent(nextData);
     }
     
     previousTestimonio() {
         if (this.isTransitioning) return;
-        const previousPage = this.currentPage > 1 ? this.currentPage - 1 : testimoniosData.length;
-        this.loadTestimonio(previousPage);
+        
+        this.currentIndex = this.currentIndex === 0 
+            ? testimoniosData.length - 1 
+            : this.currentIndex - 1;
+        const prevData = testimoniosData[this.currentIndex];
+        this.updateTestimonioContent(prevData);
     }
     
     startAutoPlay() {
@@ -683,6 +654,105 @@ class TestimoniosCarousel {
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-    new RegistroForm();
     new TestimoniosCarousel();
+});
+
+
+
+/**
+ * MINIHERO CAROUSEL - Sistema automático de carrusel de imágenes
+ * Funcionalidades:
+ * - Rotación automática cada 4 segundos
+ * - Animaciones fade in/out
+ */
+
+// Array de imágenes para el minihero
+const miniheroImages = [
+    'assets/img/banner-fondo.webp',
+    'assets/img/fondo-contacto.webp',
+    'assets/img/fondo-banner-cierre.webp'
+];
+
+class MiniheroCarousel {
+    constructor() {
+        this.container = document.querySelector('.registro__minihero');
+        if (!this.container) return;
+        
+        this.currentIndex = 0;
+        this.images = miniheroImages;
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 4000; // 4 segundos
+        this.isTransitioning = false;
+        
+        this.init();
+    }
+    
+    init() {
+        this.createImageElements();
+        this.startAutoPlay();
+    }
+    
+    createImageElements() {
+        // Limpiar el contenedor
+        this.container.innerHTML = '';
+        
+        // Crear elementos de imagen
+        this.images.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = `Banner ${index + 1}`;
+            img.style.position = 'absolute';
+            img.style.width = '100%';
+            img.style.height = '100%';
+            img.style.objectFit = 'cover';
+            img.style.opacity = index === 0 ? '1' : '0';
+            img.style.transition = 'opacity 0.8s ease-in-out';
+            
+            this.container.appendChild(img);
+        });
+        
+        this.imageElements = Array.from(this.container.querySelectorAll('img'));
+    }
+    
+    nextImage() {
+        if (this.isTransitioning) return;
+        this.isTransitioning = true;
+        
+        const currentImg = this.imageElements[this.currentIndex];
+        const nextIndex = (this.currentIndex + 1) % this.images.length;
+        const nextImg = this.imageElements[nextIndex];
+        
+        // Fade out imagen actual
+        currentImg.style.opacity = '0';
+        
+        // Fade in siguiente imagen
+        setTimeout(() => {
+            nextImg.style.opacity = '1';
+            this.currentIndex = nextIndex;
+            
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, 800);
+        }, 100);
+    }
+    
+    startAutoPlay() {
+        if (this.autoPlayInterval) return;
+        
+        this.autoPlayInterval = setInterval(() => {
+            this.nextImage();
+        }, this.autoPlayDelay);
+    }
+    
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+            this.autoPlayInterval = null;
+        }
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    new MiniheroCarousel();
 });

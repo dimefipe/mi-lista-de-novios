@@ -3897,6 +3897,7 @@ label {
         box-shadow: 0px 10px 20px hsla(184, 100%, 17%, 0.1);
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 16px;
         height: 100%;
 
@@ -3984,6 +3985,28 @@ label {
                 fill: #fff;
             }
         }
+    }
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDownFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 }
 
@@ -4131,9 +4154,13 @@ label {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     img {
         object-fit: cover;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -4279,6 +4306,10 @@ label {
     .registro .container {
         padding-top: 100px;
         width: calc(100% - 2rem);
+    }
+
+    .registro__testimonio--card {
+        min-height: 300px;
     }
 }
 
