@@ -613,26 +613,25 @@ class TestimoniosCarousel {
     }
     
     updateTestimonioContent(data) {
-        // Remover animaciones temporalmente
-        this.profileElement.style.animation = 'none';
-        this.textElement.style.animation = 'none';
+        // Fade OUT del contenido actual (500ms)
+        this.profileElement.style.opacity = '0';
+        this.textElement.style.opacity = '0';
+        this.profileElement.style.transition = 'opacity 0.5s ease-in-out';
+        this.textElement.style.transition = 'opacity 0.5s ease-in-out';
         
-        // Forzar reflow para reiniciar la animación
-        void this.profileElement.offsetHeight;
-        void this.textElement.offsetHeight;
-        
-        // Actualizar contenido
-        const imgElement = this.profileElement.querySelector('img');
-        
-        if (imgElement) imgElement.src = data.image;
-        if (this.nameElement) this.nameElement.textContent = data.name;
-        if (this.textElement) this.textElement.textContent = data.text;
-        
-        // Reiniciar animaciones con fade in
+        // Esperar a que termine el fade out
         setTimeout(() => {
-            this.profileElement.style.animation = 'fadeInTestimonio 0.5s ease-in-out';
-            this.textElement.style.animation = 'fadeInTestimonio 0.5s ease-in-out 0.1s backwards';
-        }, 10);
+            // Actualizar contenido
+            const imgElement = this.profileElement.querySelector('img');
+            
+            if (imgElement) imgElement.src = data.image;
+            if (this.nameElement) this.nameElement.textContent = data.name;
+            if (this.textElement) this.textElement.textContent = data.text;
+            
+            // Fade IN del nuevo contenido (500ms)
+            this.profileElement.style.opacity = '1';
+            this.textElement.style.opacity = '1';
+        }, 500);
     }
     
     nextTestimonio() {
