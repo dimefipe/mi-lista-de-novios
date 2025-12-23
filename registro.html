@@ -112,11 +112,12 @@
             <div class="header__toggle"></div>
         </div>
     </header>
+    
     <main class="main">
         <section class="registro">
             <div class="container">
 
-                <div class="registro__col">
+                <div class="registro__col registro__col--1">
                     
                     <form class="registro__form" action="https://milistadenovios.cl /registrarse" method="POST">
                         
@@ -343,29 +344,39 @@
 
                 </div>
 
-                <div class="registro__col">
+                <div class="registro__col registro__col--2">
 
                     <div class="registro__counter">
                         <div class="registro__profiles">
-                            <img src="" alt="">
-                            <img src="" alt="">
-                            <img src="" alt="">
+                            <img src="assets/img/profile-1.webp" alt="Imágen de perfil">
+                            <img src="assets/img/profile-2.webp" alt="Imágen de perfil">
+                            <img src="assets/img/profile-3.webp" alt="Imágen de perfil">
                         </div>
-                        <p class="registro__counter-text">
+                        <p class="registro__counter--text">
                             <b>+8.000</b> parejas han creado su lista
                         </p>
                     </div>
 
                     <div class="registro__security">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L20.2169 2.82598C20.6745 2.92766 21 3.33347 21 3.80217V13.7889C21 15.795 19.9974 17.6684 18.3282 18.7812L12 23L5.6718 18.7812C4.00261 17.6684 3 15.795 3 13.7889V3.80217C3 3.33347 3.32553 2.92766 3.78307 2.82598L12 1ZM12 3.04879L5 4.60434V13.7889C5 15.1263 5.6684 16.3752 6.7812 17.1171L12 20.5963L17.2188 17.1171C18.3316 16.3752 19 15.1263 19 13.7889V4.60434L12 3.04879ZM16.4524 8.22183L17.8666 9.63604L11.5026 16L7.25999 11.7574L8.67421 10.3431L11.5019 13.1709L16.4524 8.22183Z"></path></svg>
-                        <p>Tus datos están protegidos</p>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L20.2169 2.82598C20.6745 2.92766 21 3.33347 21 3.80217V13.7889C21 15.795 19.9974 17.6684 18.3282 18.7812L12 23L5.6718 18.7812C4.00261 17.6684 3 15.795 3 13.7889V3.80217C3 3.33347 3.32553 2.92766 3.78307 2.82598L12 1ZM12 3.04879L5 4.60434V13.7889C5 15.1263 5.6684 16.3752 6.7812 17.1171L12 20.5963L17.2188 17.1171C18.3316 16.3752 19 15.1263 19 13.7889V4.60434L12 3.04879ZM16.4524 8.22183L17.8666 9.63604L11.5026 16L7.25999 11.7574L8.67421 10.3431L11.5019 13.1709L16.4524 8.22183Z"></path></svg>
+                            <p>Tus datos están protegidos</p>
+                        </div>
+                        <div class="tooltip">
+                            <p>?</p>
+                            <div class="tooltip__box">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis voluptas placeat ad animi.
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="registro__testimonio">
 
                         <div class="registro__testimonio--card">
                             <div class="registro__testimonio--profile">
-                                <img src="" alt="">
+                                <img src="assets/img/profile-1.webp" alt="imagen de perfil de testimonio">
                                 <p>Camilo Torres</p>
                             </div>
                             <p>
@@ -410,54 +421,81 @@
                         <h3>Últimos registros</h3>
                         <ul>
                             <li>
-                                <div class="registro__ultimos--profile">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="registro__ultimos--info">
-                                    <p>Jennifer Barruel</p>
-                                    <span>24/Diciembre/2024 - 20:51</span>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                                <a href="#">
+                                    <div class="registro__ultimos--data">
+                                        <div class="registro__ultimos--profile">
+                                            <img src="assets/img/profile-3.webp" alt="ultimo registro foto de perfil usuario">
+                                        </div>
+
+                                        <div class="registro__ultimos--info">
+                                            <p>Jennifer Barruel</p>
+                                            <span>24/Diciembre/2024 - 20:51</span>
+                                        </div>
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                                </a>
                             </li>
-                             <li>
-                                <div class="registro__ultimos--profile">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="registro__ultimos--info">
-                                    <p>Jennifer Barruel</p>
-                                    <span>24/Diciembre/2024 - 20:51</span>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                            <li>
+                                <a href="#">
+                                    <div class="registro__ultimos--data">
+                                        <div class="registro__ultimos--profile">
+                                            <img src="assets/img/profile-3.webp" alt="ultimo registro foto de perfil usuario">
+                                        </div>
+
+                                        <div class="registro__ultimos--info">
+                                            <p>Jennifer Barruel</p>
+                                            <span>24/Diciembre/2024 - 20:51</span>
+                                        </div>
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                                </a>
                             </li>
-                             <li>
-                                <div class="registro__ultimos--profile">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="registro__ultimos--info">
-                                    <p>Jennifer Barruel</p>
-                                    <span>24/Diciembre/2024 - 20:51</span>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                            <li>
+                                <a href="#">
+                                    <div class="registro__ultimos--data">
+                                        <div class="registro__ultimos--profile">
+                                            <img src="assets/img/profile-3.webp" alt="ultimo registro foto de perfil usuario">
+                                        </div>
+
+                                        <div class="registro__ultimos--info">
+                                            <p>Jennifer Barruel</p>
+                                            <span>24/Diciembre/2024 - 20:51</span>
+                                        </div>
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+                                </a>
                             </li>
+                            
+                             
                         </ul>
                     </div>
 
                     <div class="registro__minihero">
-                        <img src="" alt="">
+                        <img src="assets/img/banner-fondo.webp" alt="banner contexto">
+                        <!-- <img src="assets/img/album-miniatura.webp" alt="banner contexto"> -->
                     </div>
 
                     <div class="registro__recaudado">
+
                         <div class="registro__logo">
-                            <img src="" alt="">
+                            <img src="assets/img/logo_color.webp" alt="">
                             <p>Última actualización: 13/12/2025</p>
                         </div>
+
+                        <div class="separador"></div>
+
                         <div class="registro__amount">
                             <div class="registro__amount--info">
                                 <p>Monto total recaudado para los novios</p>
                                 <h2><b>$7.665.448.885</b> CLP</h2>
                             </div>
-                            <div class="registro__amount--tooltip">
+                            <div class="tooltip">
                                 <p>?</p>
+                                <div class="tooltip__box">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis voluptas placeat ad animi, eius maxime obcaecati adipisci? Esse optio
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -466,6 +504,7 @@
             </div>  
         </section>
     </main>
+
     <footer class="footer">
         <div class="container">
             <div class="footer__left">
