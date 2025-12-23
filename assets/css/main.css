@@ -3467,9 +3467,11 @@ Estilos específicos de la sección Contacto
     background-color: #005359;
     /* background-color: #0bd0de; */
     display: flex;
+    align-items: center;
     gap: 12px;
     padding: 24px;
     position: relative;
+    min-height: 160px;
 
     &:after {
         content: '';
@@ -3578,6 +3580,7 @@ Estilos específicos de la sección Contacto
     p {
         color: #A7BDBF;
         font-size: 18px;
+        line-height: 1.4em;
     }
 }
 
