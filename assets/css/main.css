@@ -3441,3 +3441,323 @@ Estilos específicos de la sección Contacto
         display: none;
     }
 }
+
+/* Página de Registros  */
+.registro .container {
+    /* padding-block: 48px; */
+    padding-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.registro__col {
+    width: 50%;
+}
+
+.registro__form--container {
+    background: #FFFFFF;
+    box-shadow: 0px 10px 20px hsla(185, 46%, 43%, 0.2);
+    /* padding: 32px; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.registro__steps {
+    background-color: #005359;
+    /* background-color: #0bd0de; */
+    display: flex;
+    gap: 12px;
+    padding: 24px;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 7px;
+        background: linear-gradient(to right, #56B3C2 0%, #7EDCA7 100%);
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        transform: translateY(-100%);
+    }
+}
+
+.registro__bar {
+    --value: 33; /* porcentaje: 2 de 3 ≈ 66% */
+    max-width: 85px;
+    width: 85px;
+    min-width: 85px;
+    max-height: 85px;
+    height: 85px;
+    min-height: 85px;
+    border-radius: 50%;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all .3s ease-in-out;
+    background:
+    conic-gradient(
+        from 0deg,
+        #FFFFFF 0% calc(100% - var(--value) * 1%),
+        #6ee7b7 calc(100% - var(--value) * 1%) 100%
+    );
+    
+    span {
+        z-index: 2;
+        color: white;
+        font-size: 20px;
+        b {
+            color: #6ee7b7;
+        }
+    }
+}
+
+.registro__bar:before {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    /* border: 2px solid white; */
+    border-radius: 50%;
+    background-color: #005359;
+}
+
+.registro__step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+    display: none;
+}
+
+.registro__steps--info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+     h2 {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 32px;
+        padding-left: 0px;
+        gap: 10px;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+
+        svg {
+            width: 32px;
+            fill: #fff;
+
+        }
+    }
+
+    p {
+        color: #A7BDBF;
+        font-size: 18px;
+    }
+}
+
+.registro__step.registro__step--active {
+    display: flex;
+}
+
+.registro__field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label {
+    display: none;
+    color: hsl(183, 17%, 35%);
+}
+
+.registro__in{
+    display: flex;
+    align-items: center;
+    background-color: #59B7C0;
+    position: relative;
+
+    svg {
+        /* box-sizing: content-box; */
+        width: 24px;
+        height: 100%;
+        fill: #ffffff;
+        padding: 4px;
+
+    }
+
+    input, select {
+        flex: 1;
+        padding: 12px 16px;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-top: transparent;
+        border-left: transparent;
+        border-left: none;
+        font-size: 16px;
+        outline-offset: -2px;
+        outline: 2px solid transparent;
+    }
+
+    input:focus, select:focus {
+        outline: 2px solid #59B7C0;
+    }
+
+    .show-hidden {
+        /* background-color: red; */
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 48px;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: greenyellow; */
+        
+        svg {
+            fill: #7A9FA1;
+            min-width: 28px;
+        }
+    }
+
+    .arrow {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        width: 48px;
+        height: 100%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+
+        svg {
+            fill: #7A9FA1;
+            min-width: 28px;
+        }
+    }
+
+}
+
+.registro__field .registro__field--error {
+    color: #E66491;
+    font-size: 12px;
+    font-weight: regular;
+    display: none;
+    margin-top: 4px;
+    line-height: 12px;
+}
+
+.registro__field.error .registro__in {
+    background-color: #E66491;
+
+    input {
+        border-color: #E66491;
+    }
+
+    input:focus {
+        outline: 2px solid #E66491;
+    }
+}
+
+.registro__field.error .registro__field--error {
+    display: block;
+}
+
+.registro__field.success {
+    .registro__in {
+        background-color: #7EDCA7;
+
+        input {
+            border-color: #7EDCA7;
+        }
+
+        input:focus {
+            outline: 2px solid #7EDCA7;
+        }
+    }
+}
+
+.registro__field.label-on {
+    label {
+        display: block;
+    }
+}
+
+.registro__field.terminos .registro__in {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    a {
+        text-decoration: underline;
+    }
+}
+
+.registro__field.terminos input[type="checkbox"]{
+    appearance: none;
+    width: 20x;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    border-radius: 4px;
+    padding: 0px;
+    border: 2px solid #7CDAA9;
+    border: 1px solid #ABD1D5;
+    background: #F5FEFF;
+    box-shadow: 0 2px 6px rgba(124,218,169,0.15);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    outline: 1px;
+}
+
+.registro__field.terminos input[type="checkbox"]:checked {
+    background: #7CDAA9;
+    border-color: #7CDAA9;
+}
+
+.registro__field.terminos input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 1px); 
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
+.registro__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+
+    [type="submit"]{
+        display: none;
+    }
+
+    button {
+        min-width: 180px;
+    }
+}
