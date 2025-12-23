@@ -602,6 +602,8 @@ class TestimoniosCarousel {
     
     async loadTestimonio(page) {
         try {
+            if (this.isTransitioning) return;
+            
             const response = await fetchTestimonios(page);
             
             if (response.success) {
@@ -612,11 +614,21 @@ class TestimoniosCarousel {
             console.error('Error cargando testimonio:', error);
         }
     }
+        }
+    }
     
     updateTestimonioContent(data) {
         // Prevenir múltiples transiciones simultáneas
         if (this.isTransitioning) return;
         this.isTransitioning = true;
+        
+        // Reiniciar animación removiendo y re-aplicando
+        this.profileElement.style.animation = 'none';
+        this.textElement.style.animation = 'none';
+        
+        // Forzar reflow
+        void this.profileElement.offsetHeight;
+        void this.textElement.offsetHeight;
         
         // Slide DOWN Fade OUT del contenido actual (500ms)
         this.profileElement.style.animation = 'slideDownFadeOut 0.5s ease-in-out forwards';
@@ -631,6 +643,10 @@ class TestimoniosCarousel {
             if (this.nameElement) this.nameElement.textContent = data.name;
             if (this.textElement) this.textElement.textContent = data.text;
             
+            // Forzar reflow
+            void this.profileElement.offsetHeight;
+            void this.textElement.offsetHeight;
+            
             // Slide UP Fade IN del nuevo contenido (500ms)
             this.profileElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
             this.textElement.style.animation = 'slideUpFadeIn 0.5s ease-in-out forwards';
@@ -642,13 +658,11 @@ class TestimoniosCarousel {
     }
     
     nextTestimonio() {
-        if (this.isTransitioning) return;
         const nextPage = this.currentPage + 1;
         this.loadTestimonio(nextPage);
     }
     
     previousTestimonio() {
-        if (this.isTransitioning) return;
         const previousPage = this.currentPage > 1 ? this.currentPage - 1 : testimoniosData.length;
         this.loadTestimonio(previousPage);
     }
