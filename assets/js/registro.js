@@ -19,10 +19,15 @@ class RegistroForm {
         this.progressBar = document.querySelector('.registro__bar');
         this.progressText = document.querySelector('.registro__bar span');
         this.stepsContainer = document.querySelector('.registro__form--container');
+        
+        // Obtener botones de manera más confiable
+        const buttonContainer = document.querySelector('.registro__buttons');
+        const allButtons = buttonContainer ? Array.from(buttonContainer.querySelectorAll('button')) : [];
+        
         this.buttons = {
-            back: document.querySelector('.registro__buttons .btn-secondary'),
-            next: document.querySelector('.registro__buttons .btn:not([type="submit"])'),
-            submit: document.querySelector('.registro__buttons [type="submit"]')
+            back: allButtons.find(btn => btn.classList.contains('btn-secondary')),
+            next: allButtons.find(btn => !btn.classList.contains('btn-secondary') && btn.getAttribute('type') !== 'submit'),
+            submit: allButtons.find(btn => btn.getAttribute('type') === 'submit')
         };
         
         // Configuración de validaciones
@@ -148,7 +153,75 @@ class RegistroForm {
                 }
             });
         });
+        
+        // Setup RUT mask and validation
+        this.setupRutMask();
     }
+    
+    setupRutMask() {
+        const rutInput = this.form.querySelector('input[name="rut_titular"]');
+        if (!rutInput) return;
+        
+        rutInput.addEventListener('input', (e) => {
+            let value = e.target.value.toUpperCase().replace(/[^0-9K]/g, '');
+            
+            // Limitar a máximo 9 caracteres (8 dígitos + 1 verificador)
+            if (value.length > 9) {
+                value = value.slice(0, 9);
+            }
+            
+            // Formatear según la longitud
+            let formatted = value;
+            if (value.length > 0) {
+                if (value.length <= 2) {
+                    formatted = value;
+                } else if (value.length <= 5) {
+                    formatted = value.slice(0, 2) + '.' + value.slice(2);
+                } else if (value.length <= 8) {
+                    formatted = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5);
+                } else {
+                    formatted = value.slice(0, 2) + '.' + value.slice(2, 5) + '.' + value.slice(5, 8) + '-' + value.slice(8);
+                }
+            }
+            
+            e.target.value = formatted;
+        });
+        
+        rutInput.addEventListener('blur', (e) => {
+            // Validar RUT cuando se sale del campo
+            const rut = e.target.value.replace(/[^0-9K]/g, '');
+            if (rut.length === 9) {
+                const digitos = rut.slice(0, 8);
+                const verificador = rut.slice(8).toUpperCase();
+                const calculado = this.calcularDigitoVerificador(digitos);
+                
+                if (verificador !== calculado) {
+                    const fieldContainer = rutInput.closest('.registro__field');
+                    this.setFieldError(fieldContainer, 'El RUT ingresado es inválido. Verifica el dígito verificador');
+                }
+            }
+        });
+    }
+    
+    calcularDigitoVerificador(rut) {
+        const multiplicadores = [2, 3, 4, 5, 6, 7];
+        let suma = 0;
+        
+        // Invertir RUT y multiplicar por secuencia
+        for (let i = 0; i < rut.length; i++) {
+            const digito = parseInt(rut[rut.length - 1 - i]);
+            const multiplicador = multiplicadores[i % 6];
+            suma += digito * multiplicador;
+        }
+        
+        const resto = suma % 11;
+        const verificador = 11 - resto;
+        
+        if (verificador === 11) return '0';
+        if (verificador === 10) return 'K';
+        return verificador.toString();
+    }
+    
     
     validateField(field) {
         const fieldContainer = field.closest('.registro__field');
@@ -189,10 +262,10 @@ class RegistroForm {
                 isValid = false;
                 errorMessage = passwordValidation.message;
             }
-        } else if (field.name === 'banco' && fieldType === 'select-one') {
+        } else if ((field.name === 'banco' || field.name === 'tipo_cuenta') && fieldType === 'select') {
             if (!value) {
                 isValid = false;
-                errorMessage = 'Por favor selecciona un banco';
+                errorMessage = `Por favor selecciona una opción`;
             }
         } else if (fieldName.toLowerCase().includes('phone') || fieldName.toLowerCase().includes('telefono')) {
             const phoneValidation = this.validations.phone;
@@ -210,12 +283,22 @@ class RegistroForm {
                 errorMessage = nameValidation.message;
             }
         } else if (fieldName.toLowerCase().includes('rut')) {
-            const rutValidation = this.validations.rut;
-            if (!rutValidation.pattern.test(value)) {
+            // Validar RUT con formato XX.XXX.XXX-K
+            const rutClean = value.replace(/[^0-9K]/g, '').toUpperCase();
+            if (rutClean.length === 9) {
+                const digitos = rutClean.slice(0, 8);
+                const verificador = rutClean.slice(8);
+                const calculado = this.calcularDigitoVerificador(digitos);
+                
+                if (verificador !== calculado) {
+                    isValid = false;
+                    errorMessage = 'El RUT ingresado es inválido. Verifica el dígito verificador';
+                }
+            } else if (rutClean.length > 0 && rutClean.length < 9) {
                 isValid = false;
-                errorMessage = rutValidation.message;
+                errorMessage = 'El RUT debe tener 9 caracteres (incluyendo el dígito verificador)';
             }
-        } else if (fieldName.toLowerCase().includes('account') || fieldName.toLowerCase().includes('cuenta')) {
+        } else if (fieldName.toLowerCase().includes('account') || fieldName.toLowerCase().includes('cuenta') || fieldName.toLowerCase().includes('numero_cuenta')) {
             const accountValidation = this.validations.accountNumber;
             if (value.length < accountValidation.minLength) {
                 isValid = false;
@@ -313,7 +396,7 @@ class RegistroForm {
         const activeStep = document.querySelector(`.registro__step--${step}`);
         if (activeStep) {
             activeStep.classList.add('active');
-            activeStep.style.display = 'block';
+            activeStep.style.display = 'flex';
         }
         
         // Actualizar información del paso
@@ -350,20 +433,16 @@ class RegistroForm {
     }
     
     updateButtonVisibility() {
-        const backBtn = document.querySelector('.registro__buttons .btn-secondary');
-        const nextBtn = document.querySelector('.registro__buttons .btn:not([type="submit"])');
-        const submitBtn = document.querySelector('.registro__buttons [type="submit"]');
-        
-        if (backBtn) {
-            backBtn.style.display = this.currentStep === 1 ? 'none' : 'block';
+        if (this.buttons.back) {
+            this.buttons.back.style.display = this.currentStep === 1 ? 'none' : 'block';
         }
         
-        if (nextBtn) {
-            nextBtn.style.display = this.currentStep === this.totalSteps ? 'none' : 'block';
+        if (this.buttons.next) {
+            this.buttons.next.style.display = this.currentStep === this.totalSteps ? 'none' : 'block';
         }
         
-        if (submitBtn) {
-            submitBtn.style.display = this.currentStep === this.totalSteps ? 'block' : 'none';
+        if (this.buttons.submit) {
+            this.buttons.submit.style.display = this.currentStep === this.totalSteps ? 'block' : 'none';
         }
     }
     

@@ -173,7 +173,7 @@
                                     <label for="phone">Tu teléfono</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.36556 10.6821C10.302 12.3288 11.6712 13.698 13.3179 14.6344L14.2024 13.3961C14.4965 12.9845 15.0516 12.8573 15.4956 13.0998C16.9024 13.8683 18.4571 14.3353 20.0789 14.4637C20.599 14.5049 21 14.9389 21 15.4606V19.9234C21 20.4361 20.6122 20.8657 20.1022 20.9181C19.5723 20.9726 19.0377 21 18.5 21C9.93959 21 3 14.0604 3 5.5C3 4.96227 3.02742 4.42771 3.08189 3.89776C3.1343 3.38775 3.56394 3 4.07665 3H8.53942C9.0611 3 9.49513 3.40104 9.5363 3.92109C9.66467 5.54288 10.1317 7.09764 10.9002 8.50444C11.1427 8.9484 11.0155 9.50354 10.6039 9.79757L9.36556 10.6821ZM6.84425 10.0252L8.7442 8.66809C8.20547 7.50514 7.83628 6.27183 7.64727 5H5.00907C5.00303 5.16632 5 5.333 5 5.5C5 12.9558 11.0442 19 18.5 19C18.667 19 18.8337 18.997 19 18.9909V16.3527C17.7282 16.1637 16.4949 15.7945 15.3319 15.2558L13.9748 17.1558C13.4258 16.9425 12.8956 16.6915 12.3874 16.4061L12.3293 16.373C10.3697 15.2587 8.74134 13.6303 7.627 11.6707L7.59394 11.6126C7.30849 11.1044 7.05754 10.5742 6.84425 10.0252Z"></path></svg>
-                                        <input type="email" id="email" name="email" placeholder="Tu teléfono" required>
+                                        <input type="tel" id="email" name="email" placeholder="Tu teléfono" required>
                                     </div>
                                     <p class="registro__field--error">Mensaje de error</p>
                                 </div>
@@ -196,15 +196,15 @@
                             <div class="registro__step registro__step--active registro__step--2">
                                 
                                 <div class="registro__field">
-                                    <label for="email">Selecciona tu banco</label>
+                                    <label for="banco">Selecciona tu banco</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
-                                        <select name="banco" id="">
-                                            <option value="" default>Selecciona tu banco</option>
-                                            <option value="#">Banco 1</option>
-                                            <option value="#">Banco 2</option>
-                                            <option value="#">Banco 3</option>
-                                            <option value="#">Banco 4</option>
+                                        <select name="banco" id="banco" required>
+                                            <option value="">Selecciona tu banco</option>
+                                            <option value="banco_1">Banco 1</option>
+                                            <option value="banco_2">Banco 2</option>
+                                            <option value="banco_3">Banco 3</option>
+                                            <option value="banco_4">Banco 4</option>
                                         </select>
                                         <div class="arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
@@ -215,15 +215,15 @@
                                 </div>
 
                                 <div class="registro__field">
-                                    <label for="email">Tipo de cuenta</label>
+                                    <label for="tipo_cuenta">Tipo de cuenta</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
-                                        <select name="banco" id="">
-                                            <option value="" default>Tipo de cuenta</option>
-                                            <option value="#">Banco 1</option>
-                                            <option value="#">Banco 2</option>
-                                            <option value="#">Banco 3</option>
-                                            <option value="#">Banco 4</option>
+                                        <select name="tipo_cuenta" id="tipo_cuenta" required>
+                                            <option value="">Tipo de cuenta</option>
+                                            <option value="cuenta_corriente">Cuenta Corriente</option>
+                                            <option value="cuenta_ahorro">Cuenta de Ahorro</option>
+                                            <option value="cuenta_vista">Cuenta Vista</option>
+                                            <option value="cuenta_deposito">Depósito a Plazo</option>
                                         </select>
                                         <div class="arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>
@@ -233,37 +233,37 @@
                                 </div>
 
                                 <div class="registro__field">
-                                    <label for="password">Número de cuenta</label>
+                                    <label for="numero_cuenta">Número de cuenta</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM5 10V20H19V10H5ZM11 14H13V16H11V14ZM7 14H9V16H7V14ZM15 14H17V16H15V14ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16Z"></path></svg>
-                                        <input type="password" id="password" placeholder="Número de cuenta" name="text" required>
+                                        <input type="text" id="numero_cuenta" placeholder="Número de cuenta" name="numero_cuenta" required>
                                     </div>
                                     <p class="registro__field--error">Mensaje de error</p>
                                 </div>
 
                                 <div class="registro__field">
-                                    <label for="password">Nombre del titular</label>
+                                    <label for="nombre_titular">Nombre del titular</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM5 10V20H19V10H5ZM11 14H13V16H11V14ZM7 14H9V16H7V14ZM15 14H17V16H15V14ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16Z"></path></svg>
-                                        <input type="password" id="password" placeholder="Nombre del titular" name="text" required>
+                                        <input type="text" id="nombre_titular" placeholder="Nombre del titular" name="nombre_titular" required>
                                     </div>
                                     <p class="registro__field--error">Mensaje de error</p>
                                 </div>
 
                                 <div class="registro__field">
-                                    <label for="password">Rut del titular</label>
+                                    <label for="rut_titular">Rut del titular</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM5 10V20H19V10H5ZM11 14H13V16H11V14ZM7 14H9V16H7V14ZM15 14H17V16H15V14ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16Z"></path></svg>
-                                        <input type="password" id="password" placeholder="Rut del titular" name="text" required>
+                                        <input type="text" id="rut_titular" placeholder="Rut del titular" name="rut_titular" required>
                                     </div>
                                     <p class="registro__field--error">Mensaje de error</p>
                                 </div>
 
                                 <div class="registro__field">
-                                    <label for="password">Email del titular</label>
+                                    <label for="email_titular">Email del titular</label>
                                     <div class="registro__in">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM5 10V20H19V10H5ZM11 14H13V16H11V14ZM7 14H9V16H7V14ZM15 14H17V16H15V14ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16Z"></path></svg>
-                                        <input type="password" id="password" placeholder="Email del titular" name="text" required>
+                                        <input type="email" id="email_titular" placeholder="Email del titular" name="email_titular" required>
                                     </div>
                                     <p class="registro__field--error">Mensaje de error</p>
                                 </div>
@@ -504,5 +504,6 @@
     <script src="assets/js/video-lazy.js"></script>
     <script src="assets/js/accordion.js"></script>
     <script src="assets/js/float-btn.js"></script>
+    <script src="assets/js/registro.js"></script>
 </body>
 </html>
