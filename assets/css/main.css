@@ -3499,7 +3499,7 @@ Estilos específicos de la sección Contacto
     justify-content: center;
     align-items: center;
     position: relative;
-    transition: --value 1s ease-in-out;
+    transition: background 1s ease-in-out;
     background:
     conic-gradient(
         from 0deg,
