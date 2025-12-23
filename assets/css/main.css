@@ -3499,7 +3499,7 @@ Estilos específicos de la sección Contacto
     justify-content: center;
     align-items: center;
     position: relative;
-    transition: all .3s ease-in-out;
+    transition: all 0.5s ease-in-out, background 0.5s ease-in-out;
     background:
     conic-gradient(
         from 0deg,
@@ -3535,6 +3535,19 @@ Estilos específicos de la sección Contacto
     gap: 24px;
     padding: 24px;
     display: none;
+    opacity: 0;
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .registro__steps--info {
@@ -3570,6 +3583,8 @@ Estilos específicos de la sección Contacto
 
 .registro__step.registro__step--active {
     display: flex;
+    opacity: 1;
+    animation: fadeIn 0.4s ease-in-out forwards;
 }
 
 .registro__field {
