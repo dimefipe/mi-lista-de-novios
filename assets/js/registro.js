@@ -602,8 +602,6 @@ class TestimoniosCarousel {
     
     async loadTestimonio(page) {
         try {
-            if (this.isTransitioning) return;
-            
             const response = await fetchTestimonios(page);
             
             if (response.success) {
@@ -614,19 +612,17 @@ class TestimoniosCarousel {
             console.error('Error cargando testimonio:', error);
         }
     }
-        }
-    }
     
     updateTestimonioContent(data) {
         // Prevenir múltiples transiciones simultáneas
         if (this.isTransitioning) return;
         this.isTransitioning = true;
         
-        // Reiniciar animación removiendo y re-aplicando
+        // Remover animaciones primero
         this.profileElement.style.animation = 'none';
         this.textElement.style.animation = 'none';
         
-        // Forzar reflow
+        // Forzar reflow para reiniciar animaciones
         void this.profileElement.offsetHeight;
         void this.textElement.offsetHeight;
         
@@ -643,7 +639,7 @@ class TestimoniosCarousel {
             if (this.nameElement) this.nameElement.textContent = data.name;
             if (this.textElement) this.textElement.textContent = data.text;
             
-            // Forzar reflow
+            // Forzar reflow nuevamente
             void this.profileElement.offsetHeight;
             void this.textElement.offsetHeight;
             
@@ -658,11 +654,13 @@ class TestimoniosCarousel {
     }
     
     nextTestimonio() {
+        if (this.isTransitioning) return;
         const nextPage = this.currentPage + 1;
         this.loadTestimonio(nextPage);
     }
     
     previousTestimonio() {
+        if (this.isTransitioning) return;
         const previousPage = this.currentPage > 1 ? this.currentPage - 1 : testimoniosData.length;
         this.loadTestimonio(previousPage);
     }
