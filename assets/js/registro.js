@@ -1,0 +1,401 @@
+/**
+ * REGISTRO.JS - Sistema de formulario multi-paso con validaciones
+ * Funcionalidades:
+ * - Navegación entre pasos (1, 2, 3)
+ * - Progreso visual del progress bar
+ * - Mostrar/ocultar contraseña
+ * - Validaciones en tiempo real
+ * - Manejo de estados (error, success)
+ * - Submit del formulario
+ */
+
+class RegistroForm {
+    constructor() {
+        this.form = document.querySelector('.registro__form');
+        this.currentStep = 1;
+        this.totalSteps = 3;
+        
+        // Elementos DOM
+        this.progressBar = document.querySelector('.registro__bar');
+        this.progressText = document.querySelector('.registro__bar span');
+        this.stepsContainer = document.querySelector('.registro__form--container');
+        this.buttons = {
+            back: document.querySelector('.registro__buttons .btn-secondary'),
+            next: document.querySelector('.registro__buttons .btn:not([type="submit"])'),
+            submit: document.querySelector('.registro__buttons [type="submit"]')
+        };
+        
+        // Configuración de validaciones
+        this.validations = {
+            email: {
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Por favor ingresa un email válido'
+            },
+            password: {
+                minLength: 8,
+                pattern: /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
+                message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial'
+            },
+            phone: {
+                pattern: /^(\+?56)?[\s]?9[\s]?[0-9]{4}[\s]?[0-9]{4}$/,
+                message: 'Por favor ingresa un teléfono válido'
+            },
+            name: {
+                minLength: 2,
+                pattern: /^[a-záéíóúñ\s]+$/i,
+                message: 'El nombre debe contener solo letras'
+            },
+            rut: {
+                pattern: /^\d{1,2}\.\d{3}\.\d{3}-[\dkK]$/,
+                message: 'Por favor ingresa un RUT válido (ej: 12.345.678-9)'
+            },
+            accountNumber: {
+                minLength: 8,
+                pattern: /^\d+$/,
+                message: 'Por favor ingresa un número de cuenta válido'
+            },
+            date: {
+                message: 'Por favor selecciona una fecha válida'
+            }
+        };
+        
+        this.init();
+    }
+    
+    init() {
+        this.setupEventListeners();
+        this.updateProgressBar();
+        this.displayStep(this.currentStep);
+    }
+    
+    setupEventListeners() {
+        // Botones de navegación
+        if (this.buttons.back) {
+            this.buttons.back.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.prevStep();
+            });
+        }
+        
+        if (this.buttons.next) {
+            this.buttons.next.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this.validateCurrentStep()) {
+                    this.nextStep();
+                }
+            });
+        }
+        
+        if (this.buttons.submit) {
+            this.buttons.submit.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this.validateCurrentStep()) {
+                    this.submitForm();
+                }
+            });
+        }
+        
+        // Password visibility toggle
+        this.setupPasswordToggle();
+        
+        // Validaciones en tiempo real
+        this.setupRealTimeValidation();
+    }
+    
+    setupPasswordToggle() {
+        const passwordInputs = this.form.querySelectorAll('input[type="password"]');
+        
+        passwordInputs.forEach(input => {
+            const container = input.closest('.registro__in');
+            if (!container) return;
+            
+            const toggleBtn = container.querySelector('.show-hidden');
+            if (!toggleBtn) return;
+            
+            // Crear SVG para mostrar contraseña (oculto)
+            const hideIcon = toggleBtn.innerHTML;
+            const showIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8827 19.2968C16.1814 20.3755 14.1638 21.0002 12.0003 21.0002C6.60812 21.0002 2.12215 17.1204 1.18164 12.0002C1.61832 9.62282 2.81932 7.5129 4.52047 5.93457L1.39366 2.80777L2.80788 1.39355L22.6069 21.1925L21.1927 22.6068L17.8827 19.2968ZM5.9356 7.3497C4.60673 8.56015 3.6378 10.1672 3.22278 12.0002C4.14022 16.0521 7.7646 19.0002 12.0003 19.0002C13.5997 19.0002 15.112 18.5798 16.4243 17.8384L14.396 15.8101C13.7023 16.2472 12.8808 16.5002 12.0003 16.5002C9.51498 16.5002 7.50026 14.4854 7.50026 12.0002C7.50026 11.1196 7.75317 10.2981 8.19031 9.60442L5.9356 7.3497ZM12.9139 14.328L9.67246 11.0866C9.5613 11.3696 9.50026 11.6777 9.50026 12.0002C9.50026 13.3809 10.6196 14.5002 12.0003 14.5002C12.3227 14.5002 12.6309 14.4391 12.9139 14.328ZM20.8068 16.5925L19.376 15.1617C20.0319 14.2268 20.5154 13.1586 20.7777 12.0002C19.8603 7.94818 16.2359 5.00016 12.0003 5.00016C11.1544 5.00016 10.3329 5.11773 9.55249 5.33818L7.97446 3.76015C9.22127 3.26959 10.5793 3.00016 12.0003 3.00016C17.3924 3.00016 21.8784 6.87992 22.8189 12.0002C22.5067 13.6998 21.8038 15.2628 20.8068 16.5925Z"></path></svg>`;
+            
+            let isPasswordVisible = false;
+            
+            toggleBtn.addEventListener('click', () => {
+                isPasswordVisible = !isPasswordVisible;
+                
+                if (isPasswordVisible) {
+                    input.type = 'text';
+                    toggleBtn.classList.add('visible');
+                    toggleBtn.innerHTML = showIcon;
+                } else {
+                    input.type = 'password';
+                    toggleBtn.classList.remove('visible');
+                    toggleBtn.innerHTML = hideIcon;
+                }
+            });
+        });
+    }
+    
+    setupRealTimeValidation() {
+        const fields = this.form.querySelectorAll('input, select, textarea');
+        
+        fields.forEach(field => {
+            field.addEventListener('blur', () => {
+                this.validateField(field);
+            });
+            
+            field.addEventListener('input', () => {
+                if (field.closest('.registro__field').classList.contains('error')) {
+                    this.validateField(field);
+                }
+            });
+        });
+    }
+    
+    validateField(field) {
+        const fieldContainer = field.closest('.registro__field');
+        if (!fieldContainer) return true;
+        
+        const fieldType = field.getAttribute('type') || field.tagName.toLowerCase();
+        const fieldName = field.getAttribute('name') || field.id;
+        const value = field.value.trim();
+        
+        // No validar campos vacíos que no sean requeridos
+        if (!value && !field.hasAttribute('required')) {
+            this.clearFieldError(fieldContainer);
+            return true;
+        }
+        
+        // Validar si el campo es requerido y está vacío
+        if (!value && field.hasAttribute('required')) {
+            this.setFieldError(fieldContainer, 'Este campo es requerido');
+            return false;
+        }
+        
+        let isValid = true;
+        let errorMessage = '';
+        
+        // Validaciones según tipo de campo
+        if (fieldType === 'email') {
+            const emailValidation = this.validations.email;
+            if (!emailValidation.pattern.test(value)) {
+                isValid = false;
+                errorMessage = emailValidation.message;
+            }
+        } else if (field.name === 'password' || fieldType === 'password') {
+            const passwordValidation = this.validations.password;
+            if (value.length < passwordValidation.minLength) {
+                isValid = false;
+                errorMessage = `La contraseña debe tener al menos ${passwordValidation.minLength} caracteres`;
+            } else if (!passwordValidation.pattern.test(value)) {
+                isValid = false;
+                errorMessage = passwordValidation.message;
+            }
+        } else if (field.name === 'banco' && fieldType === 'select-one') {
+            if (!value) {
+                isValid = false;
+                errorMessage = 'Por favor selecciona un banco';
+            }
+        } else if (fieldName.toLowerCase().includes('phone') || fieldName.toLowerCase().includes('telefono')) {
+            const phoneValidation = this.validations.phone;
+            if (!phoneValidation.pattern.test(value)) {
+                isValid = false;
+                errorMessage = phoneValidation.message;
+            }
+        } else if (fieldName.toLowerCase().includes('name') || fieldName.toLowerCase().includes('nombre')) {
+            const nameValidation = this.validations.name;
+            if (value.length < nameValidation.minLength) {
+                isValid = false;
+                errorMessage = `El nombre debe tener al menos ${nameValidation.minLength} caracteres`;
+            } else if (!nameValidation.pattern.test(value)) {
+                isValid = false;
+                errorMessage = nameValidation.message;
+            }
+        } else if (fieldName.toLowerCase().includes('rut')) {
+            const rutValidation = this.validations.rut;
+            if (!rutValidation.pattern.test(value)) {
+                isValid = false;
+                errorMessage = rutValidation.message;
+            }
+        } else if (fieldName.toLowerCase().includes('account') || fieldName.toLowerCase().includes('cuenta')) {
+            const accountValidation = this.validations.accountNumber;
+            if (value.length < accountValidation.minLength) {
+                isValid = false;
+                errorMessage = accountValidation.message;
+            } else if (!accountValidation.pattern.test(value)) {
+                isValid = false;
+                errorMessage = accountValidation.message;
+            }
+        } else if (fieldType === 'date') {
+            const selectedDate = new Date(value);
+            const today = new Date();
+            if (selectedDate < today) {
+                isValid = false;
+                errorMessage = 'La fecha del evento debe ser en el futuro';
+            }
+        }
+        
+        // Validación de checkbox de términos
+        if (field.type === 'checkbox' && fieldContainer.classList.contains('terminos')) {
+            if (!field.checked) {
+                isValid = false;
+                errorMessage = 'Debes aceptar los términos y condiciones';
+            }
+        }
+        
+        if (!isValid) {
+            this.setFieldError(fieldContainer, errorMessage);
+        } else {
+            this.clearFieldError(fieldContainer);
+        }
+        
+        return isValid;
+    }
+    
+    validateCurrentStep() {
+        const currentStepElement = document.querySelector(`.registro__step--${this.currentStep}`);
+        if (!currentStepElement) return true;
+        
+        const fieldsInStep = currentStepElement.querySelectorAll('input[required], select[required], textarea[required]');
+        let allValid = true;
+        
+        fieldsInStep.forEach(field => {
+            if (!this.validateField(field)) {
+                allValid = false;
+            }
+        });
+        
+        return allValid;
+    }
+    
+    setFieldError(fieldContainer, message) {
+        fieldContainer.classList.remove('success');
+        fieldContainer.classList.add('error');
+        
+        const errorElement = fieldContainer.querySelector('.registro__field--error');
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+    }
+    
+    clearFieldError(fieldContainer) {
+        fieldContainer.classList.remove('error');
+        
+        const errorElement = fieldContainer.querySelector('.registro__field--error');
+        if (errorElement) {
+            errorElement.textContent = '';
+        }
+    }
+    
+    nextStep() {
+        if (this.currentStep < this.totalSteps) {
+            this.currentStep++;
+            this.displayStep(this.currentStep);
+            this.updateProgressBar();
+        }
+    }
+    
+    prevStep() {
+        if (this.currentStep > 1) {
+            this.currentStep--;
+            this.displayStep(this.currentStep);
+            this.updateProgressBar();
+        }
+    }
+    
+    displayStep(step) {
+        // Ocultar todos los pasos
+        const allSteps = this.form.querySelectorAll('.registro__step');
+        allSteps.forEach(stepEl => {
+            stepEl.classList.remove('active');
+            stepEl.style.display = 'none';
+        });
+        
+        // Mostrar paso actual
+        const activeStep = document.querySelector(`.registro__step--${step}`);
+        if (activeStep) {
+            activeStep.classList.add('active');
+            activeStep.style.display = 'block';
+        }
+        
+        // Actualizar información del paso
+        this.updateStepInfo(step);
+        
+        // Actualizar visibilidad de botones
+        this.updateButtonVisibility();
+    }
+    
+    updateStepInfo(step) {
+        const stepInfos = [
+            {
+                title: 'Crear una cuenta',
+                description: 'Regístrate y comienza a crear tu lista de novios'
+            },
+            {
+                title: 'Información bancaria',
+                description: 'Ingresa tus datos bancarios en los que quieres recibir el dinero de tus regalos'
+            },
+            {
+                title: 'Información personal',
+                description: 'Completa tu información y la de tu pareja'
+            }
+        ];
+        
+        const info = stepInfos[step - 1];
+        if (info) {
+            const titleElement = this.form.querySelector('.registro__steps--info h2 span');
+            const descElement = this.form.querySelector('.registro__steps--info p');
+            
+            if (titleElement) titleElement.textContent = info.title;
+            if (descElement) descElement.textContent = info.description;
+        }
+    }
+    
+    updateButtonVisibility() {
+        const backBtn = document.querySelector('.registro__buttons .btn-secondary');
+        const nextBtn = document.querySelector('.registro__buttons .btn:not([type="submit"])');
+        const submitBtn = document.querySelector('.registro__buttons [type="submit"]');
+        
+        if (backBtn) {
+            backBtn.style.display = this.currentStep === 1 ? 'none' : 'block';
+        }
+        
+        if (nextBtn) {
+            nextBtn.style.display = this.currentStep === this.totalSteps ? 'none' : 'block';
+        }
+        
+        if (submitBtn) {
+            submitBtn.style.display = this.currentStep === this.totalSteps ? 'block' : 'none';
+        }
+    }
+    
+    updateProgressBar() {
+        if (!this.progressBar || !this.progressText) return;
+        
+        const percentage = (this.currentStep / this.totalSteps) * 100;
+        this.progressBar.style.setProperty('--value', percentage);
+        this.progressText.innerHTML = `<b>${this.currentStep}</b> de ${this.totalSteps}`;
+    }
+    
+    submitForm() {
+        // Validar el último paso
+        if (!this.validateCurrentStep()) {
+            return;
+        }
+        
+        // Recolectar datos del formulario
+        const formData = new FormData(this.form);
+        
+        // Aquí puedes enviar los datos al servidor
+        console.log('Formulario listo para enviar:', Object.fromEntries(formData));
+        
+        // Mostrar mensaje de éxito (simulado)
+        alert('¡Registro completado exitosamente! Pronto recibirás un email de confirmación.');
+        
+        // Opcional: Enviar formulario normalmente
+        // this.form.submit();
+    }
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    new RegistroForm();
+});
