@@ -496,7 +496,9 @@ class RegistroForm {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new RegistroForm();
+    if (document.querySelector('.registro__form')) {
+        new RegistroForm();
+    }
 });
 
 
