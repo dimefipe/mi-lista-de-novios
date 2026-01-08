@@ -1,0 +1,682 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Mi Lista de Novios</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon_io/favicon.ico">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard">
+        <div class="dashboard__overlay" data-dashboard-overlay></div>
+        <aside class="dashboard__sidebar" id="dashboard-sidebar">
+            <div class="dashboard__sidebar-top">
+                <div class="dashboard__brand">
+                    <img src="assets/img/logo_color.webp" alt="Mi Lista de Novios">
+                    <button class="dashboard__sidebar-close" type="button" aria-label="Cerrar menu">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="dashboard__mobile-tools">
+                    <div class="dashboard__mobile-actions">
+                        <div class="dashboard__notify dashboard__notify--mobile">
+                            <button class="dashboard__notify-trigger dashboard__notify-trigger--soft" type="button" aria-expanded="false" aria-controls="dashboard-notify-menu-mobile">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-14 0v5l-2 2v1h18v-1z"></path>
+                                </svg>
+                                <span class="dashboard__notify-dot" aria-hidden="true"></span>
+                            </button>
+                            <div class="dashboard__notify-menu" id="dashboard-notify-menu-mobile" role="menu">
+                                <div class="dashboard__notify-header">
+                                    <p class="dashboard__notify-title">Notificaciones</p>
+                                    <div class="dashboard__notify-actions">
+                                        <button class="dashboard__notify-clear" type="button">Eliminar vistas</button>
+                                        <button class="dashboard__notify-close" type="button" aria-label="Cerrar notificaciones">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="dashboard__notify-list">
+                                    <article class="dashboard__notify-item">
+                                        <div class="dashboard__notify-avatar">TF</div>
+                                        <div class="dashboard__notify-body">
+                                            <p class="dashboard__notify-text">Terry Francis pidio permiso para editar la lista.</p>
+                                            <p class="dashboard__notify-meta">Proyecto - 5 min</p>
+                                        </div>
+                                        <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                        <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                            </svg>
+                                        </button>
+                                    </article>
+                                    <article class="dashboard__notify-item dashboard__notify-item--unread">
+                                        <div class="dashboard__notify-avatar">AJ</div>
+                                        <div class="dashboard__notify-body">
+                                            <p class="dashboard__notify-text">Alex Johnson envio un regalo pendiente.</p>
+                                            <p class="dashboard__notify-meta">Regalos - 10 min</p>
+                                        </div>
+                                        <span class="dashboard__notify-status dashboard__notify-status--alert"></span>
+                                        <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                            </svg>
+                                        </button>
+                                    </article>
+                                    <article class="dashboard__notify-item">
+                                        <div class="dashboard__notify-avatar">SW</div>
+                                        <div class="dashboard__notify-body">
+                                            <p class="dashboard__notify-text">Sarah Williams confirmo asistencia.</p>
+                                            <p class="dashboard__notify-meta">Invitados - 15 min</p>
+                                        </div>
+                                        <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                        <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                            </svg>
+                                        </button>
+                                    </article>
+                                    <article class="dashboard__notify-item">
+                                        <div class="dashboard__notify-avatar">MB</div>
+                                        <div class="dashboard__notify-body">
+                                            <p class="dashboard__notify-text">Mike Brown actualizo el presupuesto.</p>
+                                            <p class="dashboard__notify-meta">Presupuesto - 20 min</p>
+                                        </div>
+                                        <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                        <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                            </svg>
+                                        </button>
+                                    </article>
+                                </div>
+                                <button class="dashboard__notify-action" type="button">Ver todas las notificaciones</button>
+                            </div>
+                        </div>
+                        <div class="dashboard__user dashboard__user--compact">
+                            <button class="dashboard__user-trigger" type="button" aria-expanded="false" aria-controls="dashboard-user-menu-mobile">
+                                <span class="dashboard__avatar">ML</span>
+                                <span class="dashboard__user-info">
+                                    <span class="dashboard__user-name">Maria & Luis</span>
+                                <span class="dashboard__user-role">maria.luis@milistadenovios.com</span>
+                                </span>
+                                <span class="dashboard__user-chevron">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M12 15.5l-7-7 1.4-1.4L12 12.7l5.6-5.6L19 8.5z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <div class="dashboard__user-menu" id="dashboard-user-menu-mobile" role="menu">
+                                <div class="dashboard__modal-header">
+                                    <div class="dashboard__modal-heading">
+                                        <p class="dashboard__modal-title">Maria &amp; Luis</p>
+                                        <p class="dashboard__modal-subtitle">maria.luis@milistadenovios.com</p>
+                                    </div>
+                                    <button class="dashboard__modal-close" type="button" aria-label="Cerrar perfil">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <a class="dashboard__user-item" href="#">Mi perfil</a>
+                                <a class="dashboard__user-item" href="#">Configuracion</a>
+                                <a class="dashboard__user-item" href="#">Mis invitados</a>
+                                <a class="dashboard__user-item" href="#">Invitaciones</a>
+                                <a class="dashboard__user-item" href="#">Soporte</a>
+                                <a class="dashboard__user-item dashboard__user-item--danger" href="#">Cerrar sesion</a>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="dashboard__search dashboard__search--full">
+                        <span class="dashboard__search-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 2a8 8 0 0 1 6.32 12.9l4.4 4.4-1.42 1.4-4.39-4.38A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"></path>
+                            </svg>
+                        </span>
+                        <input type="search" placeholder="Buscar en tu lista..." />
+                    </label>
+                </div>
+            </div>
+
+            <div class="dashboard__sidebar-middle">
+                <nav class="dashboard-menu" aria-label="Menu principal">
+                    <ul class="dashboard-menu__list">
+                        <li class="dashboard-menu__item dashboard-menu__item--active">
+                            <a class="dashboard-menu__link" href="#">Escritorio</a>
+                        </li>
+                        <li class="dashboard-menu__item">
+                            <a class="dashboard-menu__link" href="#">Editar perfil</a>
+                        </li>
+                        <li class="dashboard-menu__item">
+                            <a class="dashboard-menu__link" href="#">Crea tu lista</a>
+                        </li>
+                        <li class="dashboard-menu__item">
+                            <a class="dashboard-menu__link" href="#">Regalos recibidos</a>
+                        </li>
+                        <li class="dashboard-menu__item dashboard-menu__item--has-submenu">
+                            <button class="dashboard-menu__link dashboard-menu__toggle" type="button" aria-expanded="false" aria-controls="dashboard-tools">
+                                Herramientas
+                                <span class="dashboard-menu__chevron">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M12 15.5l-7-7 1.4-1.4L12 12.7l5.6-5.6L19 8.5z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <ul class="dashboard-menu__submenu" id="dashboard-tools">
+                                <li class="dashboard-menu__subitem">
+                                    <a class="dashboard-menu__sublink" href="#">Tareas</a>
+                                </li>
+                                <li class="dashboard-menu__subitem">
+                                    <a class="dashboard-menu__sublink" href="#">Presupuesto</a>
+                                </li>
+                                <li class="dashboard-menu__subitem">
+                                    <a class="dashboard-menu__sublink" href="#">Confirmar invitados</a>
+                                </li>
+                                <li class="dashboard-menu__subitem">
+                                    <a class="dashboard-menu__sublink" href="#">Organizar mesas</a>
+                                </li>
+                                <li class="dashboard-menu__subitem">
+                                    <a class="dashboard-menu__sublink" href="#">Album de fotos</a>
+                                </li>
+                                <li class="dashboard-menu__subitem">
+                                    <a class="dashboard-menu__sublink" href="#">Invitacion</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dashboard-menu__item">
+                            <a class="dashboard-menu__link" href="#">Latam Pass</a>
+                        </li>
+                        <li class="dashboard-menu__item">
+                            <a class="dashboard-menu__link dashboard-menu__link--danger" href="#">Cerrar sesion</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="dashboard__sidebar-bottom">
+                <div class="dashboard__sidebar-card">
+                    <p class="dashboard__sidebar-label">Avance general</p>
+                    <p class="dashboard__sidebar-value">68%</p>
+                    <div class="dashboard__progress" style="--progress: 68%;">
+                        <span></span>
+                    </div>
+                    <p class="dashboard__sidebar-note">Meta de regalos completada al 68%</p>
+                </div>
+            </div>
+        </aside>
+
+        <div class="dashboard__modal dashboard__modal--user" data-dashboard-modal="user" aria-hidden="true">
+            <div class="dashboard__modal-overlay" data-dashboard-modal-close></div>
+            <div class="dashboard__modal-card" role="dialog" aria-modal="true" aria-label="Mi perfil">
+                <div class="dashboard__modal-header">
+                    <div class="dashboard__modal-heading">
+                        <p class="dashboard__modal-title">Maria &amp; Luis</p>
+                        <p class="dashboard__modal-subtitle">maria.luis@milistadenovios.com</p>
+                    </div>
+                    <button class="dashboard__modal-close" type="button" aria-label="Cerrar perfil">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="dashboard__modal-body">
+                    <div class="dashboard__user-menu dashboard__user-menu--modal">
+                        <a class="dashboard__user-item" href="#">Mi perfil</a>
+                        <a class="dashboard__user-item" href="#">Configuracion</a>
+                        <a class="dashboard__user-item" href="#">Mis invitados</a>
+                        <a class="dashboard__user-item" href="#">Invitaciones</a>
+                        <a class="dashboard__user-item" href="#">Soporte</a>
+                        <a class="dashboard__user-item dashboard__user-item--danger" href="#">Cerrar sesion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard__modal dashboard__modal--notify" data-dashboard-modal="notify" aria-hidden="true">
+            <div class="dashboard__modal-overlay" data-dashboard-modal-close></div>
+            <div class="dashboard__modal-card" role="dialog" aria-modal="true" aria-label="Notificaciones">
+                <div class="dashboard__modal-header">
+                    <p class="dashboard__notify-title">Notificaciones</p>
+                    <div class="dashboard__notify-actions">
+                        <button class="dashboard__notify-clear" type="button">Eliminar vistas</button>
+                        <button class="dashboard__notify-close" type="button" aria-label="Cerrar notificaciones">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="dashboard__modal-body">
+                    <div class="dashboard__notify-menu dashboard__notify-menu--modal">
+                        <div class="dashboard__notify-list">
+                            <article class="dashboard__notify-item">
+                                <div class="dashboard__notify-avatar">TF</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Terry Francis pidio permiso para editar la lista.</p>
+                                    <p class="dashboard__notify-meta">Proyecto - 5 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item dashboard__notify-item--unread">
+                                <div class="dashboard__notify-avatar">AJ</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Alex Johnson envio un regalo pendiente.</p>
+                                    <p class="dashboard__notify-meta">Regalos - 10 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--alert"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item">
+                                <div class="dashboard__notify-avatar">SW</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Sarah Williams confirmo asistencia.</p>
+                                    <p class="dashboard__notify-meta">Invitados - 15 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item">
+                                <div class="dashboard__notify-avatar">MB</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Mike Brown actualizo el presupuesto.</p>
+                                    <p class="dashboard__notify-meta">Presupuesto - 20 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item">
+                                <div class="dashboard__notify-avatar">LC</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Luisa Castro agrego una nueva mesa.</p>
+                                    <p class="dashboard__notify-meta">Evento - 25 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item dashboard__notify-item--unread">
+                                <div class="dashboard__notify-avatar">DR</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Diego Rojas actualizo la lista de invitados.</p>
+                                    <p class="dashboard__notify-meta">Invitados - 32 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--alert"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item">
+                                <div class="dashboard__notify-avatar">AP</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Ana Perez confirmo asistencia.</p>
+                                    <p class="dashboard__notify-meta">Invitados - 38 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item dashboard__notify-item--unread">
+                                <div class="dashboard__notify-avatar">GM</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Gabriel Mena agrego un regalo nuevo.</p>
+                                    <p class="dashboard__notify-meta">Regalos - 42 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--alert"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item">
+                                <div class="dashboard__notify-avatar">SR</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Sofia Ruiz subio una foto al album.</p>
+                                    <p class="dashboard__notify-meta">Album - 50 min</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                            <article class="dashboard__notify-item dashboard__notify-item--unread">
+                                <div class="dashboard__notify-avatar">JV</div>
+                                <div class="dashboard__notify-body">
+                                    <p class="dashboard__notify-text">Juan Vega solicito editar la lista.</p>
+                                    <p class="dashboard__notify-meta">Proyecto - 1 h</p>
+                                </div>
+                                <span class="dashboard__notify-status dashboard__notify-status--alert"></span>
+                                <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </article>
+                        </div>
+                        <button class="dashboard__notify-action" type="button">Ver todas las notificaciones</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard__main">
+            <header class="dashboard__topbar">
+                <div class="dashboard__topbar-left">
+                    <button class="dashboard__menu-toggle" type="button" aria-label="Abrir menu" aria-controls="dashboard-sidebar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="dashboard__title">
+                        <p class="dashboard__eyebrow">Dashboard</p>
+                        <h1>Mi lista de novios</h1>
+                    </div>
+                </div>
+                <div class="dashboard__topbar-right">
+                    <label class="dashboard__search">
+                        <span class="dashboard__search-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 2a8 8 0 0 1 6.32 12.9l4.4 4.4-1.42 1.4-4.39-4.38A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"></path>
+                            </svg>
+                        </span>
+                        <input type="search" placeholder="Buscar en tu lista..." />
+                    </label>
+                    <div class="dashboard__notify">
+                        <button class="dashboard__notify-trigger" type="button" aria-expanded="false" aria-controls="dashboard-notify-menu">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 0 0-14 0v5l-2 2v1h18v-1z"></path>
+                            </svg>
+                            <span class="dashboard__notify-dot" aria-hidden="true"></span>
+                        </button>
+                        <div class="dashboard__notify-menu" id="dashboard-notify-menu" role="menu">
+                            <div class="dashboard__notify-header">
+                                <p class="dashboard__notify-title">Notificaciones</p>
+                                <div class="dashboard__notify-actions">
+                                    <button class="dashboard__notify-clear" type="button">Eliminar vistas</button>
+                                    <button class="dashboard__notify-close" type="button" aria-label="Cerrar notificaciones">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="dashboard__notify-list">
+                                <article class="dashboard__notify-item">
+                                    <div class="dashboard__notify-avatar">TF</div>
+                                    <div class="dashboard__notify-body">
+                                        <p class="dashboard__notify-text">Terry Francis pidio permiso para editar la lista.</p>
+                                        <p class="dashboard__notify-meta">Proyecto - 5 min</p>
+                                    </div>
+                                    <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                    <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                        </svg>
+                                    </button>
+                                </article>
+                                <article class="dashboard__notify-item dashboard__notify-item--unread">
+                                    <div class="dashboard__notify-avatar">AJ</div>
+                                    <div class="dashboard__notify-body">
+                                        <p class="dashboard__notify-text">Alex Johnson envio un regalo pendiente.</p>
+                                        <p class="dashboard__notify-meta">Regalos - 10 min</p>
+                                    </div>
+                                    <span class="dashboard__notify-status dashboard__notify-status--alert"></span>
+                                    <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                        </svg>
+                                    </button>
+                                </article>
+                                <article class="dashboard__notify-item">
+                                    <div class="dashboard__notify-avatar">SW</div>
+                                    <div class="dashboard__notify-body">
+                                        <p class="dashboard__notify-text">Sarah Williams confirmo asistencia.</p>
+                                        <p class="dashboard__notify-meta">Invitados - 15 min</p>
+                                    </div>
+                                    <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                    <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                        </svg>
+                                    </button>
+                                </article>
+                                <article class="dashboard__notify-item">
+                                    <div class="dashboard__notify-avatar">MB</div>
+                                    <div class="dashboard__notify-body">
+                                        <p class="dashboard__notify-text">Mike Brown actualizo el presupuesto.</p>
+                                        <p class="dashboard__notify-meta">Presupuesto - 20 min</p>
+                                    </div>
+                                    <span class="dashboard__notify-status dashboard__notify-status--ok"></span>
+                                    <button class="dashboard__notify-remove" type="button" aria-label="Eliminar notificacion">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                        </svg>
+                                    </button>
+                                </article>
+                            </div>
+                            <button class="dashboard__notify-action" type="button">Ver todas las notificaciones</button>
+                        </div>
+                    </div>
+                    <div class="dashboard__user">
+                        <button class="dashboard__user-trigger" type="button" aria-expanded="false" aria-controls="dashboard-user-menu">
+                            <span class="dashboard__avatar">ML</span>
+                            <span class="dashboard__user-info">
+                                <span class="dashboard__user-name">Maria & Luis</span>
+                                <span class="dashboard__user-role">maria.luis@milistadenovios.com</span>
+                            </span>
+                            <span class="dashboard__user-chevron">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 15.5l-7-7 1.4-1.4L12 12.7l5.6-5.6L19 8.5z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="dashboard__user-menu" id="dashboard-user-menu" role="menu">
+                            <div class="dashboard__modal-header">
+                                <div class="dashboard__modal-heading">
+                                    <p class="dashboard__modal-title">Maria &amp; Luis</p>
+                                    <p class="dashboard__modal-subtitle">maria.luis@milistadenovios.com</p>
+                                </div>
+                                <button class="dashboard__modal-close" type="button" aria-label="Cerrar perfil">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M18.3 5.71L12 12.01l-6.3-6.3-1.41 1.42 6.3 6.29-6.3 6.3 1.41 1.41 6.3-6.3 6.29 6.3 1.42-1.41-6.3-6.3 6.3-6.29z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <a class="dashboard__user-item" href="#">Mi perfil</a>
+                            <a class="dashboard__user-item" href="#">Configuracion</a>
+                            <a class="dashboard__user-item" href="#">Mis invitados</a>
+                            <a class="dashboard__user-item" href="#">Invitaciones</a>
+                            <a class="dashboard__user-item" href="#">Soporte</a>
+                            <a class="dashboard__user-item dashboard__user-item--danger" href="#">Cerrar sesion</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="dashboard__content">
+                <section class="dashboard__hero">
+                    <article class="dashboard-card dashboard-card--hero">
+                        <p class="dashboard-card__label">Total recaudado</p>
+                        <p class="dashboard-card__value">$4.850.000</p>
+                        <div class="dashboard-card__progress" style="--progress: 68%;">
+                            <span></span>
+                        </div>
+                        <p class="dashboard-card__meta">Meta $7.000.000</p>
+                    </article>
+                    <article class="dashboard-card dashboard-card--hero dashboard-card--accent">
+                        <p class="dashboard-card__label">Invitados confirmados</p>
+                        <p class="dashboard-card__value">128</p>
+                        <p class="dashboard-card__meta">48 pendientes por responder</p>
+                        <div class="dashboard-card__chips">
+                            <span>Oct</span>
+                            <span>Nov</span>
+                            <span>Dic</span>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="dashboard__metrics">
+                    <article class="dashboard-card">
+                        <div class="dashboard-card__row">
+                            <p class="dashboard-card__label">Regalos recibidos</p>
+                            <span class="dashboard-card__trend dashboard-card__trend--up">+12%</span>
+                        </div>
+                        <p class="dashboard-card__value">86</p>
+                        <p class="dashboard-card__meta">Ultimos 30 dias</p>
+                    </article>
+                    <article class="dashboard-card">
+                        <div class="dashboard-card__row">
+                            <p class="dashboard-card__label">Invitaciones enviadas</p>
+                            <span class="dashboard-card__trend dashboard-card__trend--up">+8%</span>
+                        </div>
+                        <p class="dashboard-card__value">176</p>
+                        <p class="dashboard-card__meta">Envios activos</p>
+                    </article>
+                    <article class="dashboard-card">
+                        <div class="dashboard-card__row">
+                            <p class="dashboard-card__label">Presupuesto</p>
+                            <span class="dashboard-card__trend dashboard-card__trend--down">-4%</span>
+                        </div>
+                        <p class="dashboard-card__value">$980.000</p>
+                        <p class="dashboard-card__meta">Disponible este mes</p>
+                    </article>
+                    <article class="dashboard-card">
+                        <div class="dashboard-card__row">
+                            <p class="dashboard-card__label">Mesas listas</p>
+                            <span class="dashboard-card__trend dashboard-card__trend--up">+3%</span>
+                        </div>
+                        <p class="dashboard-card__value">12</p>
+                        <p class="dashboard-card__meta">Faltan 4 mesas</p>
+                    </article>
+                </section>
+
+                <section class="dashboard__panels">
+                    <article class="dashboard-panel">
+                        <div class="dashboard-panel__header">
+                            <p class="dashboard-panel__title">Tareas prioritarias</p>
+                            <button class="dashboard-panel__action" type="button">Ver todo</button>
+                        </div>
+                        <div class="dashboard-panel__list">
+                            <div class="dashboard-panel__item">
+                                <div class="dashboard-panel__item-info">
+                                    <p class="dashboard-panel__item-title">Confirmar invitados VIP</p>
+                                    <p class="dashboard-panel__item-meta">8 respuestas pendientes</p>
+                                </div>
+                                <span class="dashboard-panel__badge">Hoy</span>
+                            </div>
+                            <div class="dashboard-panel__item">
+                                <div class="dashboard-panel__item-info">
+                                    <p class="dashboard-panel__item-title">Definir menu final</p>
+                                    <p class="dashboard-panel__item-meta">Catering y cocteleria</p>
+                                </div>
+                                <span class="dashboard-panel__badge">Semana</span>
+                            </div>
+                            <div class="dashboard-panel__item">
+                                <div class="dashboard-panel__item-info">
+                                    <p class="dashboard-panel__item-title">Distribuir mesas</p>
+                                    <p class="dashboard-panel__item-meta">Pendiente por zona</p>
+                                </div>
+                                <span class="dashboard-panel__badge">Marzo</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="dashboard__stack">
+                        <article class="dashboard-panel">
+                            <div class="dashboard-panel__header">
+                                <p class="dashboard-panel__title">Regalos destacados</p>
+                                <button class="dashboard-panel__action" type="button">Ver regalos</button>
+                            </div>
+                            <div class="dashboard-panel__grid">
+                                <div class="dashboard-panel__mini">
+                                    <p class="dashboard-panel__mini-label">Linea hogar</p>
+                                    <p class="dashboard-panel__mini-value">$1.2M</p>
+                                </div>
+                                <div class="dashboard-panel__mini">
+                                    <p class="dashboard-panel__mini-label">Viaje</p>
+                                    <p class="dashboard-panel__mini-value">$850K</p>
+                                </div>
+                                <div class="dashboard-panel__mini">
+                                    <p class="dashboard-panel__mini-label">Experiencias</p>
+                                    <p class="dashboard-panel__mini-value">$430K</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="dashboard-panel dashboard-panel--soft">
+                            <div class="dashboard-panel__header">
+                                <p class="dashboard-panel__title">Album de fotos</p>
+                                <button class="dashboard-panel__action" type="button">Subir</button>
+                            </div>
+                            <div class="dashboard-panel__media">
+                                <div class="dashboard-panel__media-tile"></div>
+                                <div class="dashboard-panel__media-tile"></div>
+                                <div class="dashboard-panel__media-tile"></div>
+                                <div class="dashboard-panel__media-tile"></div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="dashboard__cards">
+                    <article class="dashboard-card dashboard-card--placeholder">
+                        <p class="dashboard-card__label">Card de contenido</p>
+                        <p class="dashboard-card__meta">Disponible para nuevas secciones</p>
+                    </article>
+                    <article class="dashboard-card dashboard-card--placeholder">
+                        <p class="dashboard-card__label">Card de contenido</p>
+                        <p class="dashboard-card__meta">Disponible para nuevas secciones</p>
+                    </article>
+                    <article class="dashboard-card dashboard-card--placeholder">
+                        <p class="dashboard-card__label">Card de contenido</p>
+                        <p class="dashboard-card__meta">Disponible para nuevas secciones</p>
+                    </article>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
+
+
+ 
+ 
+
+
