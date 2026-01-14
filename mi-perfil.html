@@ -6,6 +6,7 @@
     <title>Mi perfil | Mi Lista de Novios</title>
 
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" />
 
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io/favicon-16x16.png">
@@ -22,9 +23,9 @@
 
     <header class="header">
         <div class="container">
-            <div class="header__logo">
+            <a href="index.html" class="header__logo">
                 <img src="assets/img/logo_color.webp" alt="Mi Lista de Novios Logo">
-            </div>
+            </a>
 
             <div class="header__right">
                 <nav class="header__nav">
@@ -146,9 +147,7 @@
                         </nav>
                         <h1 class="profile__title">Editar perfil</h1>
                         <p class="profile__subtitle">Administra tus datos, pagos y la informacion publica de tu lista.</p>
-                        <div class="profile-hero__meta">
-                            <span class="profile-hero__tag">Codigo de novios: C03Z7</span>
-                        </div>
+                        
                     </div>
                     <div class="profile-hero__actions">
                         <a class="profile__button profile__button--primary" href="#">Ver mi lista</a>
@@ -167,41 +166,220 @@
                     </div>
 
                     <div class="profile__panels">
+                        <section class="profile__card" id="vista-previa">
+                            <div class="profile__card-header">
+                                <h3 class="profile__card-title">Vista previa</h3>
+                                <p class="profile__card-subtitle">Asi veran tus invitados el encabezado de tu lista.</p>
+                            </div>
+                            <div class="profile-preview">
+                                <div class="profile-preview__banner">
+                                    <img src="assets/img/banner-fondo.webp" alt="Banner de la lista">
+                                     <!-- <img src="assets/img/background-fallback.webp" alt="Banner de la lista"> -->
+                                </div>
+                                <div class="profile-preview__body">
+                                    <div class="profile-preview__avatar">
+                                        <div class="profile-preview__avatar--mask">
+                                            <img src="assets/img/couple.webp" alt="Foto de los novios">
+                                            <!-- <img src="assets/img/couple-fallback.webp" alt="Foto de los novios"> -->
+                                            <!-- <img src="assets/img/couple-fallback-1.webp" alt="Foto de los novios"> -->
+                                        </div>
+                                    </div>
+                                    <span class="profile-preview__eyebrow">Nuestra celebracion</span>
+                                    <h4 class="profile-preview__names">Ignacio Herrera y Jennifer Barruel</h4>
+                                    <div class="profile-preview__meta">
+                                        <span class="profile-preview__badge">
+                                            <i class="ri-calendar-event-line" aria-hidden="true"></i>
+                                            La fecha del evento es el día <span>11 de Enero del 2026</span>
+                                        </span>
+                                    </div>
+                                    <p class="profile-preview__message">Esta es nuestra lista de suenos que preparamos con mucho amor y carino. Te invitamos a ser parte de nuestra celebracion ayudandonos a cumplir nuestros deseos.</p>
+                                </div>
+                            </div>
+                            <div class="profile__form-grid profile__form-grid--single">
+                                <div class="profile__media-row">
+                                    <div class="profile__media-card">
+                                    <div class="profile__media-head">
+                                        <div class="profile__media-label">
+                                            <i class="ri-landscape-line" aria-hidden="true"></i>
+                                            Imagen de banner
+                                            <span class="profile__media-meta">1600 x 600 px</span>
+                                        </div>
+                                        <label class="profile__media-action" for="perfil-banner">
+                                            <i class="ri-image-edit-line" aria-hidden="true"></i>
+                                            Cambiar banner
+                                        </label>
+                                    </div>
+                                    <input class="profile__media-input" id="perfil-banner" type="file" accept="image/*">
+                                    <div class="profile__media-file">
+                                        <span class="profile__media-filename" aria-live="polite">Sin archivo seleccionado</span>
+                                        <button class="profile__media-clear" type="button" aria-label="Quitar archivo seleccionado">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM12 10.5858L14.8284 7.75736L16.2426 9.17157L13.4142 12L16.2426 14.8284L14.8284 16.2426L12 13.4142L9.17157 16.2426L7.75736 14.8284L10.5858 12L7.75736 9.17157L9.17157 7.75736L12 10.5858Z"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="profile__media-card">
+                                    <div class="profile__media-head">
+                                        <div class="profile__media-label">
+                                            <i class="ri-user-3-line" aria-hidden="true"></i>
+                                            Foto de perfil
+                                            <span class="profile__media-meta">600 x 600 px</span>
+                                        </div>
+                                        <label class="profile__media-action" for="perfil-foto">
+                                            <i class="ri-camera-line" aria-hidden="true"></i>
+                                            Cambiar foto
+                                        </label>
+                                    </div>
+                                    <input class="profile__media-input" id="perfil-foto" type="file" accept="image/*">
+                                    <div class="profile__media-file">
+                                        <span class="profile__media-filename" aria-live="polite">Sin archivo seleccionado</span>
+                                        <button class="profile__media-clear" type="button" aria-label="Quitar archivo seleccionado">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM12 10.5858L14.8284 7.75736L16.2426 9.17157L13.4142 12L16.2426 14.8284L14.8284 16.2426L12 13.4142L9.17157 16.2426L7.75736 14.8284L10.5858 12L7.75736 9.17157L9.17157 7.75736L12 10.5858Z"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="profile__subsection" id="encabezado">
+                                    <div class="profile__subsection-header profile__subsection-header--inline">
+                                        <div class="profile__subsection-intro">
+                                            <h4 class="profile__subsection-title">
+                                                <i class="ri-font-size-2" aria-hidden="true"></i>
+                                                Encabezado
+                                            </h4>
+                                            <p class="profile__subsection-subtitle">Revisa y cambia aqui como veran tus invitados los nombres en la lista.</p>
+                                        </div>
+                                        <div class="profile__radio-group profile__radio-group--pills profile__radio-group--compact" aria-label="Separador">
+                                            <label class="profile__radio profile__radio--pill">
+                                                <input type="radio" name="perfil-encabezado" checked>
+                                                <span>Y</span>
+                                            </label>
+                                            <label class="profile__radio profile__radio--pill">
+                                                <input type="radio" name="perfil-encabezado">
+                                                <span>&amp;</span>
+                                            </label>
+                                            <label class="profile__radio profile__radio--pill">
+                                                <input type="radio" name="perfil-encabezado">
+                                                <span>Personalizado</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="profile__form-grid profile__form-grid--compact">
+                                        <div class="profile__field profile__field--full">
+                                            <label class="profile__label profile__label--muted profile__label--icon" for="perfil-encabezado-texto">
+                                                <i class="ri-quill-pen-line" aria-hidden="true"></i>
+                                                Su encabezado
+                                            </label>
+                                            <input class="profile__input profile__input--filled" id="perfil-encabezado-texto" type="text" value="Ignacio Herrera y Jennifer Barruel">
+                                        </div>
+                                    </div>
+                                    <div class="profile__pair-grid">
+                                        <div class="profile__pair-card">
+                                            <div class="profile__pair-fields">
+                                                <div class="profile__field">
+                                                    <label class="profile__label profile__label--icon" for="perfil-novio">
+                                                        <i class="ri-user-heart-line" aria-hidden="true"></i>
+                                                        Nombre del novio
+                                                    </label>
+                                                    <input class="profile__input" id="perfil-novio" type="text" value="Ignacio">
+                                                </div>
+                                                <div class="profile__field">
+                                                    <label class="profile__label profile__label--icon" for="perfil-apellido-novio">
+                                                        <i class="ri-user-line" aria-hidden="true"></i>
+                                                        Apellido del novio
+                                                    </label>
+                                                    <input class="profile__input" id="perfil-apellido-novio" type="text" value="Herrera">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="profile__pair-card">
+                                            <div class="profile__pair-fields">
+                                                <div class="profile__field">
+                                                    <label class="profile__label profile__label--icon" for="perfil-novia">
+                                                        <i class="ri-user-heart-line" aria-hidden="true"></i>
+                                                        Nombre de la novia
+                                                    </label>
+                                                    <input class="profile__input" id="perfil-novia" type="text" value="Jennifer">
+                                                </div>
+                                                <div class="profile__field">
+                                                    <label class="profile__label profile__label--icon" for="perfil-apellido-novia">
+                                                        <i class="ri-user-line" aria-hidden="true"></i>
+                                                        Apellido de la novia
+                                                    </label>
+                                                    <input class="profile__input" id="perfil-apellido-novia" type="text" value="Barruel">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="profile__field">
+                                    <label class="profile__label profile__label--icon" for="perfil-fecha">
+                                        <i class="ri-calendar-event-line" aria-hidden="true"></i>
+                                        Fecha del evento
+                                    </label>
+                                    <input class="profile__input" id="perfil-fecha" type="date" value="2026-01-11">
+                                </div>
+                                <div class="profile__field profile__field--full">
+                                    <label class="profile__label profile__label--icon" for="perfil-mensaje">
+                                        <i class="ri-chat-3-line" aria-hidden="true"></i>
+                                        Mensaje para tus invitados
+                                    </label>
+                                    <textarea class="profile__textarea" id="perfil-mensaje">Esta es nuestra lista de suenos que preparamos con mucho amor y carino. Te invitamos a ser parte de nuestra celebracion ayudandonos a cumplir nuestros deseos.</textarea>
+                                </div>
+                            </div>
+                            <div class="profile__actions">
+                                <button class="profile__button profile__button--primary profile__button--icon" type="button">
+                                    <i class="ri-save-3-line" aria-hidden="true"></i>
+                                    Guardar vista previa
+                                </button>
+                            </div>
+                        </section>
+
+                        <section class="profile__card" id="mi-url">
+                            <div class="profile__card-header">
+                                <h3 class="profile__card-title">Mi URL</h3>
+                                <p class="profile__card-subtitle">Personaliza el enlace de tu lista.</p>
+                            </div>
+                            <div class="profile__form-grid profile__form-grid--single">
+                                <div class="profile__field">
+                                    <label class="profile__label" for="perfil-url">URL personalizada</label>
+                                    <div class="profile__url-input">
+                                        <span class="profile__url-prefix">https://milistadenovios.cl/lista/</span>
+                                        <input class="profile__input profile__input--inline" id="perfil-url" type="text" value="mi-lista-ignacia-javier">
+                                        <button class="profile__url-copy profile__url-copy--inline" type="button" aria-label="Copiar URL">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <rect x="9" y="9" width="11" height="11" rx="2"/>
+                                                <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <button class="profile__url-copy profile__url-copy--full" type="button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <rect x="9" y="9" width="11" height="11" rx="2"/>
+                                            <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
+                                        </svg>
+                                        Copiar URL
+                                    </button>
+                                </div>
+                                <div class="profile__url">
+                                    <span class="profile__link">https://milistadenovios.cl/lista/mi-lista-ignacia-javier</span>
+                                    <span class="profile__code">Codigo de novios: C03Z7</span>
+                                </div>
+                                <div class="profile__alert profile__alert--success is-visible">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M5 12l4 4 10-10"/>
+                                    </svg>
+                                    <span>Url actualizada correctamente</span>
+                                </div>
+                            </div>
+                            <div class="profile__actions">
+                                <button class="profile__button" type="button" data-qr-open>Ver QR</button>
+                                <button class="profile__button profile__button--primary" type="button">Guardar URL</button>
+                            </div>
+                        </section>
+
                         <section class="profile__card" id="datos-personales">
                             <div class="profile__card-header">
                                 <h3 class="profile__card-title">Datos personales</h3>
                                 <p class="profile__card-subtitle">Tu informacion de contacto principal.</p>
-                            </div>
-                            <div class="profile__media-grid">
-                                <div class="profile__media-card">
-                                    <div class="profile__media-label">Foto de perfil</div>
-                                    <div class="profile__media-preview profile__media-preview--avatar">
-                                        <img src="assets/img/profile-1.webp" alt="Vista previa foto de perfil">
-                                        <label class="profile__media-upload profile__media-upload--avatar" for="perfil-foto">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M5 7h3l1-2h6l1 2h3v10H5z"/>
-                                                <circle cx="12" cy="12" r="3"/>
-                                            </svg>
-                                            <span class="sr-only">Cambiar foto</span>
-                                        </label>
-                                    </div>
-                                    <input class="profile__media-input" id="perfil-foto" type="file" accept="image/*">
-                                </div>
-                                <div class="profile__media-card">
-                                    <div class="profile__media-label">Imagen de banner</div>
-                                    <div class="profile__media-preview profile__media-preview--banner">
-                                        <img src="assets/img/banner-fondo.webp" alt="Vista previa imagen de banner">
-                                        <label class="profile__media-upload profile__media-upload--banner" for="perfil-banner">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                                <rect x="3" y="5" width="18" height="14" rx="2"/>
-                                                <path d="M7 15l3-3 4 4 3-3 3 3"/>
-                                                <circle cx="9" cy="9" r="1.5"/>
-                                            </svg>
-                                            <span>Cambiar banner</span>
-                                        </label>
-                                    </div>
-                                    <input class="profile__media-input" id="perfil-banner" type="file" accept="image/*">
-                                </div>
                             </div>
                             <div class="profile__form-grid">
                                 <div class="profile__field">
@@ -292,114 +470,6 @@
                             </div>
                         </section>
 
-                        <section class="profile__card" id="datos-matrimonio">
-                            <div class="profile__card-header">
-                                <h3 class="profile__card-title">Datos del matrimonio</h3>
-                                <p class="profile__card-subtitle">La informacion publica de tu evento.</p>
-                            </div>
-                            <div class="profile__form-grid">
-                                <div class="profile__field">
-                                    <label class="profile__label" for="perfil-fecha">Fecha del evento</label>
-                                    <input class="profile__input" id="perfil-fecha" type="date" value="2026-01-11">
-                                </div>
-                                <div class="profile__field">
-                                    <label class="profile__label" for="perfil-novio">Nombre del novio</label>
-                                    <input class="profile__input" id="perfil-novio" type="text" value="Ignacio">
-                                </div>
-                                <div class="profile__field">
-                                    <label class="profile__label" for="perfil-apellido-novio">Apellido del novio</label>
-                                    <input class="profile__input" id="perfil-apellido-novio" type="text" value="Herrera">
-                                </div>
-                                <div class="profile__field">
-                                    <label class="profile__label" for="perfil-novia">Nombre de la novia</label>
-                                    <input class="profile__input" id="perfil-novia" type="text" value="Jennifer">
-                                </div>
-                                <div class="profile__field">
-                                    <label class="profile__label" for="perfil-apellido-novia">Apellido de la novia</label>
-                                    <input class="profile__input" id="perfil-apellido-novia" type="text" value="Barruel">
-                                </div>
-                                <div class="profile__field profile__field--full">
-                                    <label class="profile__label" for="perfil-mensaje">Mensaje para tus invitados</label>
-                                    <textarea class="profile__textarea" id="perfil-mensaje">Esta es una lista de suenos que preparamos con mucho amor y carino.</textarea>
-                                </div>
-                            </div>
-                            <div class="profile__actions">
-                                <button class="profile__button profile__button--primary" type="button">Guardar datos</button>
-                            </div>
-                        </section>
-
-                        <section class="profile__card" id="mi-url">
-                            <div class="profile__card-header">
-                                <h3 class="profile__card-title">Mi URL</h3>
-                                <p class="profile__card-subtitle">Personaliza el enlace de tu lista.</p>
-                            </div>
-                            <div class="profile__form-grid profile__form-grid--single">
-                                <div class="profile__field">
-                                    <label class="profile__label" for="perfil-url">URL personalizada</label>
-                                    <div class="profile__url-input">
-                                        <span class="profile__url-prefix">https://milistadenovios.cl/lista/</span>
-                                        <input class="profile__input profile__input--inline" id="perfil-url" type="text" value="mi-lista-ignacia-javier">
-                                        <button class="profile__url-copy profile__url-copy--inline" type="button" aria-label="Copiar URL">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                                <rect x="9" y="9" width="11" height="11" rx="2"/>
-                                                <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <button class="profile__url-copy profile__url-copy--full" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                            <rect x="9" y="9" width="11" height="11" rx="2"/>
-                                            <path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/>
-                                        </svg>
-                                        Copiar URL
-                                    </button>
-                                </div>
-                                <div class="profile__url">
-                                    <span class="profile__link">https://milistadenovios.cl/lista/mi-lista-ignacia-javier</span>
-                                    <span class="profile__code">Codigo de novios: C03Z7</span>
-                                </div>
-                                <div class="profile__alert profile__alert--success is-visible">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M5 12l4 4 10-10"/>
-                                    </svg>
-                                    <span>Url actualizada correctamente</span>
-                                </div>
-                            </div>
-                            <div class="profile__actions">
-                                <button class="profile__button" type="button" data-qr-open>Ver QR</button>
-                                <button class="profile__button profile__button--primary" type="button">Guardar URL</button>
-                            </div>
-                        </section>
-
-                        <section class="profile__card" id="encabezado">
-                            <div class="profile__card-header">
-                                <h3 class="profile__card-title">Encabezado</h3>
-                                <p class="profile__card-subtitle">Revisa (y cambia) aqui como veran tus invitados los nombres de los novios en la lista.</p>
-                            </div>
-                            <div class="profile__form-grid profile__form-grid--single">
-                                <div class="profile__radio-group profile__radio-group--stack">
-                                    <label class="profile__radio">
-                                        <input type="radio" name="perfil-encabezado" checked>
-                                        Y
-                                    </label>
-                                    <label class="profile__radio">
-                                        <input type="radio" name="perfil-encabezado">
-                                        &
-                                    </label>
-                                    <label class="profile__radio">
-                                        <input type="radio" name="perfil-encabezado">
-                                        Personalizado
-                                    </label>
-                                </div>
-                                <div class="profile__field">
-                                    <label class="profile__label profile__label--muted" for="perfil-encabezado-texto">Su encabezado</label>
-                                    <input class="profile__input profile__input--filled" id="perfil-encabezado-texto" type="text" value="Ignacio Herrera y Jennifer Barruel">
-                                </div>
-                            </div>
-                            <div class="profile__actions">
-                                <button class="profile__button profile__button--primary" type="button">Guardar encabezado</button>
-                            </div>
-                        </section>
                     </div>
                 </div>
             </div>

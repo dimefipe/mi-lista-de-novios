@@ -73,6 +73,190 @@ document.addEventListener('DOMContentLoaded', () => {
         toggle.addEventListener('click', () => setState(input.type === 'password'));
     });
 
+    const fileInputs = document.querySelectorAll('.profile__media-input');
+    const bannerInput = document.getElementById('perfil-banner');
+    const avatarInput = document.getElementById('perfil-foto');
+    const previewBanner = document.querySelector('.profile-preview__banner img');
+    const previewAvatar = document.querySelector('.profile-preview__avatar img');
+    const previewNames = document.querySelector('.profile-preview__names');
+    const previewDate = document.querySelector('.profile-preview__badge span');
+    const previewMessage = document.querySelector('.profile-preview__message');
+    const headerInput = document.getElementById('perfil-encabezado-texto');
+    const novioInput = document.getElementById('perfil-novio');
+    const novioApellidoInput = document.getElementById('perfil-apellido-novio');
+    const noviaInput = document.getElementById('perfil-novia');
+    const noviaApellidoInput = document.getElementById('perfil-apellido-novia');
+    const fechaInput = document.getElementById('perfil-fecha');
+    const mensajeInput = document.getElementById('perfil-mensaje');
+    const separatorInputs = document.querySelectorAll('input[name="perfil-encabezado"]');
+
+    const defaultText = (element, key, fallback) => {
+        if (!element) return fallback;
+        if (!element.dataset[key]) {
+            element.dataset[key] = element.textContent || fallback || '';
+        }
+        return element.dataset[key];
+    };
+
+    const defaultSrc = (element) => {
+        if (!element) return '';
+        if (!element.dataset.defaultSrc) {
+            element.dataset.defaultSrc = element.getAttribute('src') || '';
+        }
+        return element.dataset.defaultSrc;
+    };
+
+    const setPreviewImage = (element, file) => {
+        if (!element) return;
+        if (element.dataset.objectUrl) {
+            URL.revokeObjectURL(element.dataset.objectUrl);
+            delete element.dataset.objectUrl;
+        }
+
+        if (file) {
+            const objectUrl = URL.createObjectURL(file);
+            element.dataset.objectUrl = objectUrl;
+            element.src = objectUrl;
+        } else {
+            element.src = defaultSrc(element);
+        }
+    };
+
+    const updateFileState = (input) => {
+        const card = input.closest('.profile__media-card');
+        if (!card) return;
+
+        const filename = card.querySelector('.profile__media-filename');
+        const clearButton = card.querySelector('.profile__media-clear');
+        if (!filename || !clearButton) return;
+
+        const file = input.files && input.files[0];
+        if (file) {
+            filename.textContent = file.name;
+            filename.title = file.name;
+            card.classList.add('is-selected');
+            clearButton.disabled = false;
+        } else {
+            filename.textContent = 'Sin archivo seleccionado';
+            filename.removeAttribute('title');
+            card.classList.remove('is-selected');
+            clearButton.disabled = true;
+        }
+    };
+
+    fileInputs.forEach((input) => {
+        updateFileState(input);
+        input.addEventListener('change', () => {
+            updateFileState(input);
+            if (input === bannerInput) {
+                const file = input.files && input.files[0];
+                setPreviewImage(previewBanner, file || null);
+            }
+            if (input === avatarInput) {
+                const file = input.files && input.files[0];
+                setPreviewImage(previewAvatar, file || null);
+            }
+        });
+
+        const card = input.closest('.profile__media-card');
+        const clearButton = card ? card.querySelector('.profile__media-clear') : null;
+        if (!clearButton) return;
+
+        clearButton.addEventListener('click', () => {
+            input.value = '';
+            updateFileState(input);
+            if (input === bannerInput) {
+                setPreviewImage(previewBanner, null);
+            }
+            if (input === avatarInput) {
+                setPreviewImage(previewAvatar, null);
+            }
+        });
+    });
+
+    const getSeparatorMode = () => {
+        for (const input of separatorInputs) {
+            if (input.checked) {
+                const label = input.closest('label');
+                const text = label ? label.querySelector('span')?.textContent?.trim() : '';
+                if (text.toLowerCase() === 'personalizado') {
+                    return { mode: 'custom', separator: '' };
+                }
+                return { mode: 'auto', separator: text || 'y' };
+            }
+        }
+        return { mode: 'auto', separator: 'y' };
+    };
+
+    const buildFullName = (nombre, apellido) => {
+        const parts = [];
+        if (nombre) parts.push(nombre);
+        if (apellido) parts.push(apellido);
+        return parts.join(' ').trim();
+    };
+
+    const updateNamesPreview = () => {
+        if (!previewNames) return;
+        const { mode, separator } = getSeparatorMode();
+        const fallback = defaultText(previewNames, 'defaultText', '');
+
+        if (mode === 'custom') {
+            const custom = headerInput ? headerInput.value.trim() : '';
+            previewNames.textContent = custom || fallback;
+            return;
+        }
+
+        const novio = buildFullName(novioInput?.value?.trim() || '', novioApellidoInput?.value?.trim() || '');
+        const novia = buildFullName(noviaInput?.value?.trim() || '', noviaApellidoInput?.value?.trim() || '');
+        const sepText = separator ? ` ${separator} ` : ' ';
+        const composed = [novio, novia].filter(Boolean).join(sepText).trim();
+        previewNames.textContent = composed || fallback;
+    };
+
+    const updateDatePreview = () => {
+        if (!previewDate || !fechaInput) return;
+        const fallback = defaultText(previewDate, 'defaultText', '');
+        const value = fechaInput.value;
+        if (!value) {
+            previewDate.textContent = fallback;
+            return;
+        }
+
+        const [year, month, day] = value.split('-');
+        const months = [
+            'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+            'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+        ];
+        const monthIndex = Number(month) - 1;
+        if (monthIndex < 0 || monthIndex >= months.length) {
+            previewDate.textContent = fallback;
+            return;
+        }
+        const monthName = months[monthIndex];
+        const capitalized = `${monthName.charAt(0).toUpperCase()}${monthName.slice(1)}`;
+        previewDate.textContent = `${Number(day)} de ${capitalized} del ${year}`;
+    };
+
+    const updateMessagePreview = () => {
+        if (!previewMessage || !mensajeInput) return;
+        const fallback = defaultText(previewMessage, 'defaultText', '');
+        const value = mensajeInput.value.trim();
+        previewMessage.textContent = value || fallback;
+    };
+
+    if (headerInput) headerInput.addEventListener('input', updateNamesPreview);
+    if (novioInput) novioInput.addEventListener('input', updateNamesPreview);
+    if (novioApellidoInput) novioApellidoInput.addEventListener('input', updateNamesPreview);
+    if (noviaInput) noviaInput.addEventListener('input', updateNamesPreview);
+    if (noviaApellidoInput) noviaApellidoInput.addEventListener('input', updateNamesPreview);
+    if (fechaInput) fechaInput.addEventListener('input', updateDatePreview);
+    if (mensajeInput) mensajeInput.addEventListener('input', updateMessagePreview);
+    separatorInputs.forEach((input) => input.addEventListener('change', updateNamesPreview));
+
+    updateNamesPreview();
+    updateDatePreview();
+    updateMessagePreview();
+
     const showToast = (message) => {
         if (!toast) return;
         if (toastTimer) {
