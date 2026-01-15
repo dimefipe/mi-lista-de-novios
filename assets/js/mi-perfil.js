@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cropImage = document.getElementById('cropper-image');
     const cropApplyButton = cropModal ? cropModal.querySelector('[data-crop-apply]') : null;
     const cropSkipButtons = cropModal ? cropModal.querySelectorAll('[data-crop-skip]') : [];
+    const bannerAspectRatio = 1920 / 317.65;
     let cropper = null;
     let cropSession = null;
 
@@ -146,6 +147,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return element.dataset.fallbackSrc || '';
     };
 
+    const resetBannerStyles = (element) => {
+        if (!element) return;
+        element.style.objectPosition = '';
+        element.style.transform = '';
+        element.style.transformOrigin = '';
+        delete element.dataset.bannerPosition;
+        delete element.dataset.bannerZoom;
+    };
+
+    const applyBannerStyles = (element, positionX, positionY, zoom) => {
+        if (!element) return;
+        const x = `${positionX.toFixed(2)}%`;
+        const y = `${positionY.toFixed(2)}%`;
+        element.style.objectPosition = `${x} ${y}`;
+        element.style.transformOrigin = `${x} ${y}`;
+        element.style.transform = zoom > 1 ? `scale(${zoom.toFixed(3)})` : '';
+        element.dataset.bannerPosition = `${x} ${y}`;
+        element.dataset.bannerZoom = `${zoom}`;
+    };
+
+    const computeBannerZoom = (imageData, cropData) => {
+        const naturalWidth = imageData.naturalWidth || 1;
+        const naturalHeight = imageData.naturalHeight || 1;
+        const imageRatio = naturalWidth / naturalHeight;
+        const visibleWidthDefault = imageRatio >= bannerAspectRatio
+            ? naturalHeight * bannerAspectRatio
+            : naturalWidth;
+        const zoom = visibleWidthDefault / Math.max(1, cropData.width);
+        return Math.max(1, zoom);
+    };
+
     const setPreviewImage = (element, file) => {
         if (!element) return;
         if (element.dataset.objectUrl) {
@@ -158,6 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
             element.dataset.objectUrl = objectUrl;
             element.src = objectUrl;
         } else {
+            if (element === previewBanner) {
+                resetBannerStyles(element);
+            }
             element.src = fallbackSrc(element) || defaultSrc(element);
         }
     };
@@ -195,13 +230,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const startCropSession = (file, input, previewElement) => {
+    const startCropSession = (file, input, previewElement, mode) => {
         if (!cropModal || !cropImage || !file) return;
         cropSession = {
             input,
             previewElement,
-            originalFile: file
+            originalFile: file,
+            mode
         };
+        cropModal.classList.toggle('is-avatar', mode === 'avatar');
+        cropModal.classList.toggle('is-banner', mode === 'banner');
         setCropImageSource(file);
         if (cropApplyButton) {
             cropApplyButton.disabled = true;
@@ -211,9 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const skipCropSession = () => {
         if (!cropSession) return;
-        const { input, previewElement, originalFile } = cropSession;
+        const { input, previewElement, originalFile, mode } = cropSession;
         updateFileState(input);
         setPreviewImage(previewElement, originalFile);
+        if (mode === 'banner') {
+            resetBannerStyles(previewElement);
+            previewElement.style.objectPosition = '50% 50%';
+        }
         cleanupCropper();
         closeCropModal();
         cropSession = null;
@@ -221,6 +263,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const applyCropSession = () => {
         if (!cropper || !cropSession) return;
+        if (cropSession.mode === 'banner') {
+            const cropData = cropper.getData(true);
+            const imageData = cropper.getImageData();
+            const centerX = cropData.x + cropData.width / 2;
+            const centerY = cropData.y + cropData.height / 2;
+            const positionX = (centerX / imageData.naturalWidth) * 100;
+            const positionY = (centerY / imageData.naturalHeight) * 100;
+            const zoom = computeBannerZoom(imageData, cropData);
+            updateFileState(cropSession.input);
+            setPreviewImage(cropSession.previewElement, cropSession.originalFile);
+            applyBannerStyles(cropSession.previewElement, positionX, positionY, zoom);
+            cleanupCropper();
+            closeCropModal();
+            cropSession = null;
+            return;
+        }
         const canvas = cropper.getCroppedCanvas({
             imageSmoothingQuality: 'high'
         });
@@ -248,22 +306,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!cropImage.getAttribute('src')) return;
             if (typeof Cropper === 'undefined') return;
             if (cropper) cropper.destroy();
+            const mode = cropSession?.mode || 'avatar';
             cropper = new Cropper(cropImage, {
-                aspectRatio: 1,
+                aspectRatio: mode === 'banner' ? bannerAspectRatio : 1,
                 viewMode: 1,
-                dragMode: 'crop',
-                autoCropArea: 0.85,
+                dragMode: mode === 'banner' ? 'move' : 'crop',
+                autoCropArea: mode === 'banner' ? 1 : 0.85,
                 cropBoxMovable: true,
                 cropBoxResizable: true,
                 movable: true,
                 zoomable: true,
-                scalable: true,
+                scalable: mode !== 'banner',
                 toggleDragModeOnDblclick: false,
                 background: false,
                 responsive: true,
-                guides: true,
-                center: true,
-                highlight: true
+                guides: mode !== 'banner',
+                center: mode !== 'banner',
+                highlight: mode !== 'banner'
             });
             if (cropApplyButton) {
                 cropApplyButton.disabled = false;
@@ -303,10 +362,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const file = input.files && input.files[0];
             if (!file) return;
             if (input === bannerInput) {
-                setPreviewImage(previewBanner, file);
+                startCropSession(file, input, previewBanner, 'banner');
             }
             if (input === avatarInput) {
-                startCropSession(file, input, previewAvatar);
+                startCropSession(file, input, previewAvatar, 'avatar');
             }
         });
 
@@ -319,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateFileState(input);
             if (input === bannerInput) {
                 setPreviewImage(previewBanner, null);
+                resetBannerStyles(previewBanner);
             }
             if (input === avatarInput) {
                 setPreviewImage(previewAvatar, null);

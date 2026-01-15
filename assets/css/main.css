@@ -8085,7 +8085,7 @@ body.profile-page {
     position: absolute;
 }
 
-.profile-modal--cropper .cropper-crop-box::before {
+.profile-modal--cropper.is-avatar .cropper-crop-box::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -8101,7 +8101,7 @@ body.profile-page {
     z-index: 2;
 }
 
-.profile-modal--cropper .cropper-crop-box::after {
+.profile-modal--cropper.is-avatar .cropper-crop-box::after {
     content: "";
     position: absolute;
     inset: 0;
