@@ -7793,6 +7793,7 @@ body.profile-page {
     color: #6B7B7C;
     max-width: 70ch;
     margin: 0 auto;
+    line-height: 1.5em;
 }
 
 .profile__actions {
