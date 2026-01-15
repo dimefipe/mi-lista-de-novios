@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('profile-toast');
     let closeTimer = null;
     let toastTimer = null;
+    const cropModal = document.getElementById('cropper-modal');
+    const cropImage = document.getElementById('cropper-image');
+    const cropApplyButton = cropModal ? cropModal.querySelector('[data-crop-apply]') : null;
+    const cropSkipButtons = cropModal ? cropModal.querySelectorAll('[data-crop-skip]') : [];
+    let cropper = null;
+    let cropSession = null;
 
     const eyeIcon = `
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -45,17 +51,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 260);
     };
 
+    const openCropModal = () => {
+        if (!cropModal) return;
+        requestAnimationFrame(() => {
+            cropModal.classList.add('is-open');
+        });
+        cropModal.classList.remove('is-closing');
+        cropModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeCropModal = () => {
+        if (!cropModal) return;
+        cropModal.classList.remove('is-open');
+        cropModal.classList.add('is-closing');
+        window.setTimeout(() => {
+            cropModal.classList.remove('is-closing');
+            cropModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }, 260);
+    };
+
+    const cleanupCropper = () => {
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
+        if (cropImage) {
+            if (cropImage.dataset.objectUrl) {
+                URL.revokeObjectURL(cropImage.dataset.objectUrl);
+                delete cropImage.dataset.objectUrl;
+            }
+            cropImage.removeAttribute('src');
+        }
+    };
+
     if (openBtn) {
         openBtn.addEventListener('click', openModal);
     }
 
     closeButtons.forEach((btn) => btn.addEventListener('click', closeModal));
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeModal();
-        }
-    });
 
     passwordToggles.forEach((toggle) => {
         const wrapper = toggle.closest('.profile__input-wrap');
@@ -106,6 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return element.dataset.defaultSrc;
     };
 
+    const fallbackSrc = (element) => {
+        if (!element) return '';
+        return element.dataset.fallbackSrc || '';
+    };
+
     const setPreviewImage = (element, file) => {
         if (!element) return;
         if (element.dataset.objectUrl) {
@@ -118,8 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
             element.dataset.objectUrl = objectUrl;
             element.src = objectUrl;
         } else {
-            element.src = defaultSrc(element);
+            element.src = fallbackSrc(element) || defaultSrc(element);
         }
+    };
+
+    const setCropImageSource = (file) => {
+        if (!cropImage || !file) return;
+        if (cropImage.dataset.objectUrl) {
+            URL.revokeObjectURL(cropImage.dataset.objectUrl);
+            delete cropImage.dataset.objectUrl;
+        }
+        const objectUrl = URL.createObjectURL(file);
+        cropImage.dataset.objectUrl = objectUrl;
+        cropImage.src = objectUrl;
     };
 
     const updateFileState = (input) => {
@@ -144,17 +195,118 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const startCropSession = (file, input, previewElement) => {
+        if (!cropModal || !cropImage || !file) return;
+        cropSession = {
+            input,
+            previewElement,
+            originalFile: file
+        };
+        setCropImageSource(file);
+        if (cropApplyButton) {
+            cropApplyButton.disabled = true;
+        }
+        openCropModal();
+    };
+
+    const skipCropSession = () => {
+        if (!cropSession) return;
+        const { input, previewElement, originalFile } = cropSession;
+        updateFileState(input);
+        setPreviewImage(previewElement, originalFile);
+        cleanupCropper();
+        closeCropModal();
+        cropSession = null;
+    };
+
+    const applyCropSession = () => {
+        if (!cropper || !cropSession) return;
+        const canvas = cropper.getCroppedCanvas({
+            imageSmoothingQuality: 'high'
+        });
+        if (!canvas) return;
+        const originalFile = cropSession.originalFile || (cropSession.input.files && cropSession.input.files[0]);
+        const outputType = originalFile && originalFile.type ? originalFile.type : 'image/jpeg';
+        canvas.toBlob((blob) => {
+            if (!blob) return;
+            const fileName = originalFile ? originalFile.name : 'recorte.jpg';
+            const resolvedType = blob.type || outputType;
+            const croppedFile = new File([blob], fileName, { type: resolvedType });
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(croppedFile);
+            cropSession.input.files = dataTransfer.files;
+            updateFileState(cropSession.input);
+            setPreviewImage(cropSession.previewElement, croppedFile);
+            cleanupCropper();
+            closeCropModal();
+            cropSession = null;
+        }, outputType, 0.92);
+    };
+
+    if (cropImage) {
+        cropImage.addEventListener('load', () => {
+            if (!cropImage.getAttribute('src')) return;
+            if (typeof Cropper === 'undefined') return;
+            if (cropper) cropper.destroy();
+            cropper = new Cropper(cropImage, {
+                aspectRatio: 1,
+                viewMode: 1,
+                dragMode: 'crop',
+                autoCropArea: 0.85,
+                cropBoxMovable: true,
+                cropBoxResizable: true,
+                movable: true,
+                zoomable: true,
+                scalable: true,
+                toggleDragModeOnDblclick: false,
+                background: false,
+                responsive: true,
+                guides: true,
+                center: true,
+                highlight: true
+            });
+            if (cropApplyButton) {
+                cropApplyButton.disabled = false;
+            }
+        });
+    }
+
+    if (cropApplyButton) {
+        cropApplyButton.addEventListener('click', applyCropSession);
+    }
+
+    cropSkipButtons.forEach((button) => button.addEventListener('click', skipCropSession));
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        if (cropModal && cropModal.classList.contains('is-open')) {
+            skipCropSession();
+            return;
+        }
+        if (modal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
+
     fileInputs.forEach((input) => {
         updateFileState(input);
-        input.addEventListener('change', () => {
-            updateFileState(input);
+        if (!input.files || !input.files[0]) {
             if (input === bannerInput) {
-                const file = input.files && input.files[0];
-                setPreviewImage(previewBanner, file || null);
+                setPreviewImage(previewBanner, null);
             }
             if (input === avatarInput) {
-                const file = input.files && input.files[0];
-                setPreviewImage(previewAvatar, file || null);
+                setPreviewImage(previewAvatar, null);
+            }
+        }
+        input.addEventListener('change', () => {
+            updateFileState(input);
+            const file = input.files && input.files[0];
+            if (!file) return;
+            if (input === bannerInput) {
+                setPreviewImage(previewBanner, file);
+            }
+            if (input === avatarInput) {
+                startCropSession(file, input, previewAvatar);
             }
         });
 

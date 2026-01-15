@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" />
+    <link rel="stylesheet" href="assets/vendor/cropperjs/cropper.min.css" />
 
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io/favicon-16x16.png">
@@ -173,13 +174,13 @@
                             </div>
                             <div class="profile-preview">
                                 <div class="profile-preview__banner">
-                                    <img src="assets/img/banner-fondo.webp" alt="Banner de la lista">
+                                    <img src="assets/img/banner-fondo.webp" alt="Banner de la lista" data-fallback-src="assets/img/background-fallback.webp">
                                      <!-- <img src="assets/img/background-fallback.webp" alt="Banner de la lista"> -->
                                 </div>
                                 <div class="profile-preview__body">
                                     <div class="profile-preview__avatar">
                                         <div class="profile-preview__avatar--mask">
-                                            <img src="assets/img/couple.webp" alt="Foto de los novios">
+                                            <img src="assets/img/couple.webp" alt="Foto de los novios" data-fallback-src="assets/img/couple-fallback-1.webp">
                                             <!-- <img src="assets/img/couple-fallback.webp" alt="Foto de los novios"> -->
                                             <!-- <img src="assets/img/couple-fallback-1.webp" alt="Foto de los novios"> -->
                                         </div>
@@ -523,6 +524,24 @@
         </div>
     </div>
 
+    <div class="profile-modal profile-modal--cropper" id="cropper-modal" aria-hidden="true">
+        <div class="profile-modal__overlay" data-crop-skip></div>
+        <div class="profile-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cropper-modal-title">
+            <div class="profile-modal__header">
+                <h4 id="cropper-modal-title">Recortar imagen</h4>
+            </div>
+            <div class="profile-modal__body">
+                <div class="profile-cropper">
+                    <img id="cropper-image" src="" alt="Vista previa para recorte">
+                </div>
+            </div>
+            <div class="profile-modal__footer">
+                <button class="profile__button profile__button--primary" type="button" data-crop-apply>Recortar</button>
+                <button class="profile__button" type="button" data-crop-skip>Omitir recorte</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer__left">
@@ -546,6 +565,7 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/vendor/cropperjs/cropper.min.js"></script>
     <script src="assets/js/mi-perfil.js"></script>
     <script src="assets/js/btn.js"></script>
 </body>
