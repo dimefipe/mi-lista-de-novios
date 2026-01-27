@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea tu lista | Mi Lista de Novios</title>
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" />
+    <link rel="stylesheet" href="assets/vendor/cropperjs/cropper.min.css" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon_io/favicon.ico">
+
+    
+</head>
+<body class="profile-page">
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <clipPath id="hexagon-clip" clipPathUnits="objectBoundingBox">
+                <polygon points="0.15,0 0.85,0 1,0.5 0.85,1 0.15,1 0,0.5" />
+            </clipPath>
+        </defs>
+    </svg>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header__logo">
+                <img src="assets/img/logo_color.webp" alt="Mi Lista de Novios Logo">
+            </a>
+
+            <div class="header__right">
+                <nav class="header__nav">
+                    <ul>
+                        <li>
+                            <a href="mi-perfil.html">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 20h16"/>
+                                    <path d="M6 14l8.5-8.5 3.5 3.5-8.5 8.5-3.5 0.5 0.5-3.5z"/>
+                                </svg>
+                                <span>Editar perfil</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="crear-lista.html" class="header__nav-link--active">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="4.5" cy="6" r="1.5"/>
+                                    <circle cx="4.5" cy="12" r="1.5"/>
+                                    <circle cx="4.5" cy="18" r="1.5"/>
+                                    <line x1="9" y1="6" x2="20" y2="6"/>
+                                    <line x1="9" y1="12" x2="20" y2="12"/>
+                                    <line x1="9" y1="18" x2="20" y2="18"/>
+                                </svg>
+                                <span>Crea tu lista</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="10" width="18" height="10" rx="2"/>
+                                    <path d="M12 10v10"/>
+                                    <path d="M3 10h18"/>
+                                    <path d="M7 10V8a2 2 0 0 1 2-2"/>
+                                    <path d="M17 10V8a2 2 0 0 0-2-2"/>
+                                    <path d="M9 6c0 1.1 1.3 2 3 2"/>
+                                    <path d="M15 6c0 1.1-1.3 2-3 2"/>
+                                </svg>
+                                <span>Regalos recibidos</span>
+                            </a>
+                        </li>
+
+                        <li class="header__nav-has-subnav">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="4" y1="6" x2="20" y2="6"/>
+                                    <line x1="4" y1="12" x2="20" y2="12"/>
+                                    <line x1="4" y1="18" x2="20" y2="18"/>
+                                    <circle cx="9" cy="6" r="2"/>
+                                    <circle cx="15" cy="12" r="2"/>
+                                    <circle cx="7" cy="18" r="2"/>
+                                </svg>
+                                <span>Herramientas</span>
+                            </a>
+                            <div class="header__subnav-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"/>
+                                </svg>
+                            </div>
+
+                            <ul class="header__subnav">
+                                <li><a href="#">Tareas</a></li>
+                                <li><a href="#">Presupuesto</a></li>
+                                <li><a href="#">Confirmar invitados</a></li>
+                                <li><a href="#">Organizar mesas</a></li>
+                                <li><a href="#">Album de fotos</a></li>
+                                <li><a href="#">Invitacion</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 2L11 13"/>
+                                    <path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+                                </svg>
+                                <span>Latam Pass</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="header__nav-link--danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M10 8l4 4-4 4"/>
+                                    <path d="M6 12h8"/>
+                                </svg>
+                                <span>Cerrar sesion</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="header__actions">
+                    <div class="header__toggle"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="profile-hero section">
+            <div class="container">
+                <div class="profile-hero__card">
+                    <div class="profile-hero__avatar">
+                        <img src="assets/img/profile-1.webp" alt="Foto de perfil">
+                    </div>
+                    <div class="profile-hero__info">
+                        <nav class="breadcrumbs" aria-label="Breadcrumb">
+                            <ol class="breadcrumbs__list">
+                                <li class="breadcrumbs__item">
+                                    <a class="breadcrumbs__link" href="index.html">Inicio</a>
+                                </li>
+                                <li class="breadcrumbs__item">
+                                    <span class="breadcrumbs__current">Crea tu lista</span>
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1 class="profile__title">Crea tu lista</h1>
+                        <p class="profile__subtitle">En esta seccion podras crear tu lista de regalos. Agrega nuevos regalos o edita los que ya has ido agregando.</p>
+                    </div>
+                    <div class="profile-hero__actions">
+                        <button class="profile__button profile__button--primary profile__button--with-icon gift-add-btn" type="button" data-modal-open="gift-options-modal">
+                            <i class="ri-add-line" aria-hidden="true"></i>
+                            Agregar regalo
+                        </button>
+                        <a class="profile__button" href="#">Ver mi lista</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section profile-section">
+            <div class="container">
+                <div class="profile">
+                    <div class="profile__panels">
+                        <section class="profile__card" id="lista-regalos">
+                            <div class="profile__card-header list-card__header">
+                                <div class="list-card__intro">
+                                    <h3 class="list-card__title">Tu lista de regalos</h3>
+                                    <p class="list-card__subtitle">Agrega nuevos regalos o edita los que ya has ido agregando.</p>
+                                </div>
+                                <div class="profile__actions">
+                                    <button class="profile__button profile__button--primary profile__button--with-icon gift-add-btn" type="button" data-modal-open="gift-options-modal">
+                                        <i class="ri-add-line" aria-hidden="true"></i>
+                                        Agregar regalo
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="gift-list">
+                                <div class="gift-list__head">
+                                    <span></span>
+                                    <span>Regalo / Deseo</span>
+                                    <span>Cantidad</span>
+                                    <span>Precio</span>
+                                    <span></span>
+                                </div>
+
+                                <div class="gift-list__body">
+                                    <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-1">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-1" type="text" value="Viaje a la luna">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-1">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-1" type="number" min="1" value="100" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-1">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-1" type="text" inputmode="numeric" data-money="clp" value="100">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row is-editing">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-2">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-2" type="text" value="Su primer beso">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-2">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-2" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-2">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-2" type="text" inputmode="numeric" data-money="clp" value="100000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--save gift-list__toggle-btn" type="button" aria-label="Guardar regalo" data-gift-toggle="save">
+                                            <i class="ri-save-3-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-3">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-3" type="text" value="Un abrazo">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-3">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-3" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-3">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-3" type="text" inputmode="numeric" data-money="clp" value="30000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-4">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-4" type="text" value="Tarde sin los suegros">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-4">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-4" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-4">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-4" type="text" inputmode="numeric" data-money="clp" value="20000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-5">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-5" type="text" value="Una cancion especial">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-5">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-5" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-5">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-5" type="text" inputmode="numeric" data-money="clp" value="100000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-6">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-6" type="text" value="Viaje a su lugar especial">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-6">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-6" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-6">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-6" type="text" inputmode="numeric" data-money="clp" value="20000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-7">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-7" type="text" value="Lavadora">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-7">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-7" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-7">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-7" type="text" inputmode="numeric" data-money="clp" value="40000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="gift-list__row">
+                                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                                        <i class="ri-draggable" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="gift-list__field gift-list__field--name">
+                                        <label class="sr-only" for="regalo-8">Regalo o deseo</label>
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" id="regalo-8" type="text" value="Sus mejores momentos">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                                                                <div class='emoji-picker__menu' role='listbox' aria-label='Emojis'>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='?'>?</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='???'>???</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                    <button class='emoji-picker__item' type='button' data-emoji='??'>??</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--qty">
+                                        <label class="sr-only" for="cantidad-8">Cantidad</label>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" id="cantidad-8" type="number" min="1" value="10" inputmode="numeric" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__field gift-list__field--price">
+                                        <label class="sr-only" for="precio-8">Precio</label>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" id="precio-8" type="text" inputmode="numeric" data-money="clp" value="50000">
+                                        </div>
+                                    </div>
+                                    <div class="gift-list__actions">
+                                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
+                                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                                        </button>
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                            <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                </div>
+
+                                <div class="gift-list__summary">
+                                    <p class="profile__note">Los montos se actualizan automaticamente al guardar los cambios.</p>
+                                    <div class="gift-total">
+                                        <span>Total acumulado</span>
+                                        <strong id="gift-total-amount">$7.760.000</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="profile-modal" id="gift-options-modal" aria-hidden="true">
+        <div class="profile-modal__overlay" data-modal-close></div>
+        <div class="profile-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="gift-options-title">
+            <button class="profile-modal__close" type="button" aria-label="Cerrar" data-modal-close>
+                <i class="ri-close-line" aria-hidden="true"></i>
+            </button>
+            <div class="profile-modal__header">
+                <h4 id="gift-options-title">Agregar un regalo</h4>
+            </div>
+            <div class="profile-modal__body">
+                <div class="gift-modal__icon">
+                    <i class="ri-gift-line" aria-hidden="true"></i>
+                </div>
+                <p class="profile__subtitle">Elige como quieres sumar un nuevo regalo.</p>
+                <div class="gift-modal__options">
+                    <button class="profile__button profile__button--primary" type="button" data-modal-open="gift-create-modal">Crear nuevo regalo</button>
+                    <button class="profile__button" type="button" data-modal-open="gift-suggest-modal">Te sugerimos un regalo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-modal" id="gift-create-modal" aria-hidden="true">
+        <div class="profile-modal__overlay" data-modal-close></div>
+        <div class="profile-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="gift-create-title">
+            <button class="profile-modal__close" type="button" aria-label="Cerrar" data-modal-close>
+                <i class="ri-close-line" aria-hidden="true"></i>
+            </button>
+            <div class="profile-modal__header">
+                <h4 id="gift-create-title">Crear nuevo regalo</h4>
+            </div>
+            <div class="profile-modal__body">
+                <div class="profile__form-grid">
+                    <div class="profile__field profile__field--full">
+                        <label class="profile__label" for="nuevo-regalo">Nombre del regalo o deseo</label>
+                        <div class="gift-name">
+                            <input class="profile__input gift-name__input" id="nuevo-regalo" type="text" placeholder="Ej: Viaje a la playa">
+                            <div class="emoji-picker">
+                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                </button>
+                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile__field">
+                        <label class="profile__label" for="nuevo-stock">Cantidad disponible (stock)</label>
+                        <div class="qty-control">
+                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                            <input class="profile__input qty-input" id="nuevo-stock" type="number" min="1" inputmode="numeric" placeholder="Ej: 10" data-qty-input>
+                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="profile__field">
+                        <label class="profile__label" for="nuevo-precio">Precio (CLP)</label>
+                        <div class="money-input">
+                            <span class="money-prefix">$</span>
+                            <input class="profile__input money-input__field" id="nuevo-precio" type="text" inputmode="numeric" placeholder="Ej: 50000" data-money="clp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-modal__footer">
+                <button class="profile__button profile__button--primary" type="button">Guardar</button>
+                <button class="profile__button" type="button" data-modal-close>Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-modal profile-modal--wide" id="gift-suggest-modal" aria-hidden="true">
+        <div class="profile-modal__overlay" data-modal-close></div>
+        <div class="profile-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="gift-suggest-title">
+            <button class="profile-modal__close" type="button" aria-label="Cerrar" data-modal-close>
+                <i class="ri-close-line" aria-hidden="true"></i>
+            </button>
+            <div class="profile-modal__header">
+                <h4 id="gift-suggest-title">Te sugerimos un regalo</h4>
+            </div>
+            <div class="profile-modal__body">
+                <div class="accordion">
+                    <div class="accordion-item active">
+                        <button class="accordion-header" type="button" aria-expanded="true">
+                            <span>Viajes</span>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="gift-suggestions">
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Viaje a la luna">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Viaje a su lugar especial">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Paseo en globo">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Paseo a caballo">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" type="button" aria-expanded="false">
+                            <span>Arte</span>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="gift-suggestions">
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Obra de un artista nacional">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Clase de pintura">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Sesion de fotos">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Taller de ceramica">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" type="button" aria-expanded="false">
+                            <span>Hogar</span>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="gift-suggestions">
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Lavadora">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Cafetera">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Juego de sabanas">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Juego de copas">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header" type="button" aria-expanded="false">
+                            <span>Sentimientos</span>
+                            <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="accordion-content">
+                            <div>
+                                <div class="gift-suggestions">
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Un abrazo">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Una cancion especial">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Mi apoyo incondicional">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                    <div class="gift-suggestion">
+                                        <div class="gift-name">
+                                            <input class="profile__input gift-name__input" type="text" value="Sus mejores momentos">
+                                            <div class="emoji-picker">
+                                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle>
+                                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                                </button>
+                                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                                            </div>
+                                        </div>
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad"><i class="ri-subtract-line" aria-hidden="true"></i></button>
+                                            <input class="profile__input qty-input" type="number" min="1" inputmode="numeric" placeholder="Cantidad" data-qty-input>
+                                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad"><i class="ri-add-line" aria-hidden="true"></i></button>
+                                        </div>
+                                        <div class="money-input">
+                                            <span class="money-prefix">$</span>
+                                            <input class="profile__input money-input__field" type="text" inputmode="numeric" placeholder="Precio" data-money="clp">
+                                        </div>
+                                        <button class="profile__button profile__button--primary" type="button" data-suggestion-add>Agregar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-modal__footer">
+                <button class="profile__button" type="button" data-modal-close>Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="profile__button profile__button--primary profile__button--with-icon gift-fab" type="button" data-modal-open="gift-options-modal">
+        <i class="ri-add-line" aria-hidden="true"></i>
+        Agregar regalo
+    </button>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__left">
+                <p>Copyright &copy; <span id="year"></span> Mi lista de Novios</p>
+                <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+                <a href="#">Terminos y Condiciones</a>
+            </div>
+            <div class="footer__right">
+                <a href="https://facebook.com/milistadenovios" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.001 19.9381C16.9473 19.446 20.001 16.0796 20.001 12C20.001 7.58172 16.4193 4 12.001 4C7.5827 4 4.00098 7.58172 4.00098 12C4.00098 16.0796 7.05467 19.446 11.001 19.9381V14H9.00098V12H11.001V10.3458C11.001 9.00855 11.1402 8.52362 11.4017 8.03473C11.6631 7.54584 12.0468 7.16216 12.5357 6.9007C12.9184 6.69604 13.3931 6.57252 14.2227 6.51954C14.5519 6.49851 14.9781 6.52533 15.501 6.6V8.5H15.001C14.0837 8.5 13.7052 8.54332 13.4789 8.66433C13.3386 8.73939 13.2404 8.83758 13.1653 8.97793C13.0443 9.20418 13.001 9.42853 13.001 10.3458V12H15.501L15.001 14H13.001V19.9381ZM12.001 22C6.47813 22 2.00098 17.5228 2.00098 12C2.00098 6.47715 6.47813 2 12.001 2C17.5238 2 22.001 6.47715 22.001 12C22.001 17.5228 17.5238 22 12.001 22Z"></path></svg>
+                </a>
+                <a href="mailto:contacto@milistadenovios.cl" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
+                </a>
+                <a href="https://instagram.com/milistadenovios" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 9C10.3436 9 9.00098 10.3431 9.00098 12C9.00098 13.6573 10.3441 15 12.001 15C13.6583 15 15.001 13.6569 15.001 12C15.001 10.3427 13.6579 9 12.001 9ZM12.001 7C14.7614 7 17.001 9.2371 17.001 12C17.001 14.7605 14.7639 17 12.001 17C9.24051 17 7.00098 14.7629 7.00098 12C7.00098 9.23953 9.23808 7 12.001 7ZM18.501 6.74915C18.501 7.43926 17.9402 7.99917 17.251 7.99917C16.5609 7.99917 16.001 7.4384 16.001 6.74915C16.001 6.0599 16.5617 5.5 17.251 5.5C17.9393 5.49913 18.501 6.0599 18.501 6.74915ZM12.001 4C9.5265 4 9.12318 4.00655 7.97227 4.0578C7.18815 4.09461 6.66253 4.20007 6.17416 4.38967C5.74016 4.55799 5.42709 4.75898 5.09352 5.09255C4.75867 5.4274 4.55804 5.73963 4.3904 6.17383C4.20036 6.66332 4.09493 7.18811 4.05878 7.97115C4.00703 9.0752 4.00098 9.46105 4.00098 12C4.00098 14.4745 4.00753 14.8778 4.05877 16.0286C4.0956 16.8124 4.2012 17.3388 4.39034 17.826C4.5591 18.2606 4.7605 18.5744 5.09246 18.9064C5.42863 19.2421 5.74179 19.4434 6.17187 19.6094C6.66619 19.8005 7.19148 19.9061 7.97212 19.9422C9.07618 19.9939 9.46203 20 12.001 20C14.4755 20 14.8788 19.9934 16.0296 19.9422C16.8117 19.9055 17.3385 19.7996 17.827 19.6106C18.2604 19.4423 18.5752 19.2402 18.9074 18.9085C19.2436 18.5718 19.4445 18.2594 19.6107 17.8283C19.8013 17.3358 19.9071 16.8098 19.9432 16.0289C19.9949 14.9248 20.001 14.5389 20.001 12C20.001 9.52552 19.9944 9.12221 19.9432 7.97137C19.9064 7.18906 19.8005 6.66149 19.6113 6.17318C19.4434 5.74038 19.2417 5.42635 18.9084 5.09255C18.573 4.75715 18.2616 4.55693 17.8271 4.38942C17.338 4.19954 16.8124 4.09396 16.0298 4.05781C14.9258 4.00605 14.5399 4 12.001 4ZM12.001 2C14.7176 2 15.0568 2.01 16.1235 2.06C17.1876 2.10917 17.9135 2.2775 18.551 2.525C19.2101 2.77917 19.7668 3.1225 20.3226 3.67833C20.8776 4.23417 21.221 4.7925 21.476 5.45C21.7226 6.08667 21.891 6.81333 21.941 7.8775C21.9885 8.94417 22.001 9.28333 22.001 12C22.001 14.7167 21.991 15.0558 21.941 16.1225C21.8918 17.1867 21.7226 17.9125 21.476 18.55C21.2218 19.2092 20.8776 19.7658 20.3226 20.3217C19.7668 20.8767 19.2076 21.22 18.551 21.475C17.9135 21.7217 17.1876 21.89 16.1235 21.94C15.0568 21.9875 14.7176 22 12.001 22C9.28431 22 8.94514 21.99 7.87848 21.94C6.81431 21.8908 6.08931 21.7217 5.45098 21.475C4.79264 21.2208 4.23514 20.8767 3.67931 20.3217C3.12348 19.7658 2.78098 19.2067 2.52598 18.55C2.27848 17.9125 2.11098 17.1867 2.06098 16.1225C2.01348 15.0558 2.00098 14.7167 2.00098 12C2.00098 9.28333 2.01098 8.94417 2.06098 7.8775C2.11014 6.8125 2.27848 6.0875 2.52598 5.45C2.78014 4.79167 3.12348 4.23417 3.67931 3.67833C4.23514 3.1225 4.79348 2.78 5.45098 2.525C6.08848 2.2775 6.81348 2.11 7.87848 2.06C8.94514 2.0125 9.28431 2 12.001 2Z"></path></svg>
+                </a>
+            </div>
+        </div>
+        
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/accordion.js"></script>
+    <script src="assets/js/crear-lista.js"></script>
+    <script src="assets/js/btn.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
