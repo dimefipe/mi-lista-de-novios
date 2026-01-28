@@ -189,6 +189,7 @@
 
     const giftCreateModal = document.getElementById('gift-create-modal');
     if (giftCreateModal) {
+        const createSaveBtn = giftCreateModal.querySelector('[data-gift-create-save]');
         const modalMoneyInputs = giftCreateModal.querySelectorAll('[data-money="clp"]');
         modalMoneyInputs.forEach((input) => {
             const formatInput = () => {
@@ -251,6 +252,79 @@
             input.value = value;
             input.dispatchEvent(new Event('input', { bubbles: true }));
         });
+
+        if (createSaveBtn) {
+            createSaveBtn.addEventListener('click', () => {
+                const nameInput = giftCreateModal.querySelector('.gift-name__input');
+                const qtyInput = giftCreateModal.querySelector('[data-qty-input]');
+                const priceInput = giftCreateModal.querySelector('[data-money="clp"]');
+
+                const name = nameInput?.value?.trim() || '';
+                const qty = Number(qtyInput?.value) || 1;
+                const price = normalizeNumber(priceInput?.value) || '0';
+
+                if (!name) {
+                    nameInput?.focus();
+                    return;
+                }
+
+                const rowId = `regalo-${Date.now()}`;
+                const newRow = document.createElement('div');
+                newRow.className = 'gift-list__row';
+                newRow.innerHTML = `
+                    <button class="gift-list__drag" type="button" aria-label="Reordenar">
+                        <i class="ri-draggable" aria-hidden="true"></i>
+                    </button>
+                    <div class="gift-list__field gift-list__field--name">
+                        <label class="sr-only" for="${rowId}">Regalo o deseo</label>
+                        <div class="gift-name">
+                            <input class="profile__input gift-name__input" id="${rowId}" type="text" value="${name.replace(/"/g, '&quot;')}" readonly tabindex="-1" aria-readonly="true">
+                            <div class="emoji-picker">
+                                <button class="emoji-picker__toggle" type="button" aria-label="Agregar emoji" aria-expanded="false" data-emoji-toggle disabled>
+                                    <i class="ri-emoji-sticker-line" aria-hidden="true"></i>
+                                </button>
+                                <div class="emoji-picker__menu" role="listbox" aria-label="Emojis"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gift-list__field gift-list__field--qty">
+                        <div class="qty-control">
+                            <button class="qty-btn" type="button" data-qty-action="decrease" aria-label="Disminuir cantidad">
+                                <i class="ri-subtract-line" aria-hidden="true"></i>
+                            </button>
+                            <input class="profile__input qty-input" type="number" min="1" value="${qty}" data-qty-input readonly tabindex="-1" aria-readonly="true">
+                            <button class="qty-btn" type="button" data-qty-action="increase" aria-label="Aumentar cantidad">
+                                <i class="ri-add-line" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gift-list__field gift-list__field--price">
+                        <div class="money-input">
+                            <span class="money-prefix">$</span>
+                            <input class="profile__input money-input__field" type="text" value="${formatCLP(price)}" data-money="clp" readonly tabindex="-1" aria-readonly="true">
+                        </div>
+                    </div>
+                    <div class="gift-list__actions">
+                        <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" data-gift-toggle="edit" aria-label="Editar regalo">
+                            <i class="ri-pencil-line" aria-hidden="true"></i>
+                        </button>
+                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
+                            <i class="ri-delete-bin-line" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                `;
+
+                listBody.prepend(newRow);
+                populateEmojiMenus();
+                initNewRow(newRow);
+                updateTotal();
+
+                if (nameInput) nameInput.value = '';
+                if (qtyInput) qtyInput.value = '';
+                if (priceInput) priceInput.value = '';
+                closeModal(giftCreateModal);
+            });
+        }
     }
 
     const getRowNumbers = (row) => {
@@ -737,7 +811,7 @@
                     </div>
                 `;
 
-                listBody.appendChild(newRow);
+                listBody.prepend(newRow);
                 populateEmojiMenus();
                 initNewRow(newRow);
                 updateTotal();
