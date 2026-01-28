@@ -323,7 +323,7 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -462,7 +462,7 @@
                                         <button class="gift-list__icon-btn gift-list__icon-btn--save gift-list__toggle-btn" type="button" aria-label="Guardar regalo" data-gift-toggle="save">
                                             <i class="ri-save-3-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -601,7 +601,7 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -740,7 +740,7 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -879,7 +879,7 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -1018,7 +1018,7 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -1157,7 +1157,7 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -1296,12 +1296,35 @@
                                         <button class="gift-list__icon-btn gift-list__toggle-btn" type="button" aria-label="Editar regalo" data-gift-toggle="edit">
                                             <i class="ri-pencil-line" aria-hidden="true"></i>
                                         </button>
-                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" aria-label="Eliminar regalo">
+                                        <button class="gift-list__icon-btn gift-list__icon-btn--danger" type="button" data-gift-delete aria-label="Eliminar regalo">
                                             <i class="ri-delete-bin-6-line" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
 
+                                </div>
+
+                                <div class="gift-list__empty" data-gift-empty aria-hidden="true">
+                                    <div class="gift-list__empty-card">
+                                        <div class="gift-list__empty-icon" aria-hidden="true">
+                                            <i class="ri-gift-line"></i>
+                                        </div>
+                                        <div class="gift-list__empty-content">
+                                            <h4>Tu lista está lista para comenzar</h4>
+                                            <p>Agrega regalos o deseos y comparte tu lista con tus invitados.</p>
+                                        </div>
+                                        <div class="gift-list__empty-actions">
+                                            <button class="profile__button profile__button--primary profile__button--with-icon" type="button" data-modal-open="gift-options-modal">
+                                                <i class="ri-add-line" aria-hidden="true"></i>
+                                                Agregar primer regalo
+                                            </button>
+                                            <button class="profile__button" type="button" data-modal-open="gift-suggest-modal">Sugerirme ideas</button>
+                                        </div>
+                                        <div class="gift-list__empty-tip">
+                                            <span>Tip:</span>
+                                            Puedes editar, reordenar y ajustar montos cuando quieras.
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="gift-list__summary">
@@ -1802,6 +1825,47 @@
         </div>
     </div>
 
+    <div class="profile-modal" id="gift-delete-modal" aria-hidden="true">
+        <div class="profile-modal__overlay" data-modal-close></div>
+        <div class="profile-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="gift-delete-title">
+            <button class="profile-modal__close" type="button" aria-label="Cerrar" data-modal-close>
+                <i class="ri-close-line" aria-hidden="true"></i>
+            </button>
+            <div class="profile-modal__header">
+                <h4 id="gift-delete-title">Confirmar borrado</h4>
+            </div>
+            <div class="profile-modal__body">
+                <div class="gift-delete">
+                    <div class="gift-delete__icon" aria-hidden="true">
+                        <i class="ri-alert-line"></i>
+                    </div>
+                    <div class="gift-delete__content">
+                        <p class="gift-delete__title">Estas por eliminar este regalo</p>
+                        <p class="gift-delete__subtitle">Esta accion no se puede deshacer.</p>
+                    </div>
+                </div>
+                <div class="gift-delete__summary">
+                    <div class="gift-delete__row">
+                        <span>Regalo</span>
+                        <strong data-gift-delete-name>--</strong>
+                    </div>
+                    <div class="gift-delete__row">
+                        <span>Cantidad</span>
+                        <strong data-gift-delete-qty>0</strong>
+                    </div>
+                    <div class="gift-delete__row">
+                        <span>Precio</span>
+                        <strong data-gift-delete-price>$0</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-modal__footer">
+                <button class="profile__button" type="button" data-modal-close>Cancelar</button>
+                <button class="profile__button gift-delete__confirm" type="button" data-gift-delete-confirm>Eliminar</button>
+            </div>
+        </div>
+    </div>
+
     <button class="profile__button profile__button--primary profile__button--with-icon gift-fab" type="button" data-modal-open="gift-options-modal">
         <i class="ri-add-line" aria-hidden="true"></i>
         Agregar regalo
@@ -1835,7 +1899,6 @@
     <script src="assets/js/btn.js"></script>
 </body>
 </html>
-
 
 
 

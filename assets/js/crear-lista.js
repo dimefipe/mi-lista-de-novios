@@ -3,9 +3,28 @@
     const openButtons = document.querySelectorAll('[data-modal-open]');
     const closeButtons = document.querySelectorAll('[data-modal-close]');
     let closeTimer = null;
+    let bodyPaddingRight = null;
+    let deleteModal = null;
+    let pendingDeleteRow = null;
 
     const setBodyLock = (locked) => {
-        document.body.style.overflow = locked ? 'hidden' : '';
+        if (locked) {
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            if (bodyPaddingRight === null) {
+                bodyPaddingRight = window.getComputedStyle(document.body).paddingRight;
+            }
+            const basePadding = Number.parseFloat(bodyPaddingRight) || 0;
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = scrollbarWidth > 0 ? `${basePadding + scrollbarWidth}px` : `${basePadding}px`;
+            document.body.style.setProperty('--scrollbar-comp', `${scrollbarWidth}px`);
+            document.body.classList.add('is-scroll-locked');
+            return;
+        }
+        document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
+        document.body.style.removeProperty('--scrollbar-comp');
+        document.body.classList.remove('is-scroll-locked');
+        bodyPaddingRight = null;
     };
 
     const closeAllEmojiMenus = () => {
@@ -53,6 +72,9 @@
         syncEmojiToggleStates();
         modal.classList.remove('is-open');
         modal.classList.add('is-closing');
+        if (modal === deleteModal) {
+            pendingDeleteRow = null;
+        }
         closeTimer = window.setTimeout(() => {
             modal.classList.remove('is-closing');
             modal.setAttribute('aria-hidden', 'true');
@@ -100,6 +122,13 @@
 
     const listBody = document.querySelector('.gift-list__body');
     if (!listBody) return;
+    const giftList = listBody.closest('.gift-list');
+    const emptyState = giftList?.querySelector('[data-gift-empty]');
+    deleteModal = document.getElementById('gift-delete-modal');
+    const deleteName = deleteModal?.querySelector('[data-gift-delete-name]');
+    const deleteQty = deleteModal?.querySelector('[data-gift-delete-qty]');
+    const deletePrice = deleteModal?.querySelector('[data-gift-delete-price]');
+    const deleteConfirmBtn = deleteModal?.querySelector('[data-gift-delete-confirm]');
 
     // Keep the emoji menu consistent across rows.
     const emojiOptions = [
@@ -149,6 +178,13 @@
     const formatCLPWithSymbol = (value) => {
         const formatted = formatCLP(value);
         return `$${formatted || '0'}`;
+    };
+
+    const updateEmptyState = () => {
+        if (!giftList || !emptyState) return;
+        const hasRows = Boolean(listBody.querySelector('.gift-list__row'));
+        giftList.classList.toggle('is-empty', !hasRows);
+        emptyState.setAttribute('aria-hidden', hasRows.toString());
     };
 
     const giftCreateModal = document.getElementById('gift-create-modal');
@@ -226,13 +262,36 @@
     };
 
     const updateTotal = () => {
-        if (!totalAmount) return;
         const currentRows = Array.from(listBody.querySelectorAll('.gift-list__row'));
         const sum = currentRows.reduce((acc, row) => {
             const { qty, price } = getRowNumbers(row);
             return acc + qty * price;
         }, 0);
-        totalAmount.textContent = formatCLPWithSymbol(sum);
+        if (totalAmount) {
+            totalAmount.textContent = formatCLPWithSymbol(sum);
+        }
+        updateEmptyState();
+    };
+
+    const getRowSummary = (row) => {
+        const name = row.querySelector('.gift-name__input')?.value?.trim() || 'Regalo sin nombre';
+        const { qty, price } = getRowNumbers(row);
+        return {
+            name,
+            qty,
+            price: formatCLPWithSymbol(price)
+        };
+    };
+
+    const openDeleteModal = (row) => {
+        if (!deleteModal) return;
+        closeAllModals();
+        pendingDeleteRow = row;
+        const summary = getRowSummary(row);
+        if (deleteName) deleteName.textContent = summary.name;
+        if (deleteQty) deleteQty.textContent = summary.qty.toString();
+        if (deletePrice) deletePrice.textContent = summary.price;
+        openModal(deleteModal);
     };
 
     const setRowEditing = (row, isEditing) => {
@@ -427,6 +486,14 @@
         input.dispatchEvent(new Event('input', { bubbles: true }));
     });
 
+    listBody.addEventListener('click', (event) => {
+        const deleteBtn = event.target.closest('[data-gift-delete], .gift-list__icon-btn--danger');
+        if (!deleteBtn) return;
+        const row = deleteBtn.closest('.gift-list__row');
+        if (!row) return;
+        openDeleteModal(row);
+    });
+
     handles.forEach((handle) => {
         handle.setAttribute('draggable', 'true');
 
@@ -467,6 +534,20 @@
         draggingRow.classList.remove('is-dragging');
         draggingRow = null;
     });
+
+    if (deleteConfirmBtn) {
+        deleteConfirmBtn.addEventListener('click', () => {
+            if (!pendingDeleteRow) {
+                closeModal(deleteModal);
+                return;
+            }
+            const row = pendingDeleteRow;
+            pendingDeleteRow = null;
+            row.remove();
+            updateTotal();
+            closeModal(deleteModal);
+        });
+    }
 
     const initNewRow = (row) => {
         row.setAttribute('draggable', 'false');
@@ -673,5 +754,3 @@
 
     updateTotal();
 });
-
-
